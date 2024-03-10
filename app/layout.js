@@ -1,7 +1,8 @@
-'use client'
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 const inter = Inter({ subsets: ["latin"] });
 // export const metadata = {
 //   title: "K6 management",
@@ -10,7 +11,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const router = useRouter();
-  if(!localStorage.getItem('k6')) router.replace('http://localhost:3000/login')
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("k6")) {
+        router.replace("http://localhost:3000/login");
+      }
+    }
+  }, []);
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>

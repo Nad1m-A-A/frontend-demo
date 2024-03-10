@@ -1,5 +1,5 @@
-export async function POST(req, res) {
-  const body = await req.json()
+export async function POST(req) {
+  const body = await req.json();
   const response = await fetch("http://localhost:5000/pass-code/validate", {
     method: "POST",
     headers: {
