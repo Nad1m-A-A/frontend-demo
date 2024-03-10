@@ -1,5 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -20,7 +21,16 @@ export default function RootLayout({ children }) {
   }, []);
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Image
+          width={1200}
+          height={800}
+          src="/3.jpg"
+          alt="Full Width Image"
+          className="w-full h-96 object-cover"
+        />
+        {children}
+      </body>
     </html>
   );
 }

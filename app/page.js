@@ -1,15 +1,15 @@
+import Link from "next/link.js";
 import PageLink from "./components/PageLink.js";
 const HomePage = () => {
-  const data = ["Press", "Chemicals", "Alloy"];
+  const pages = ["Press", "Chemicals", "Alloy"];
   return (
     <div className="relative w-full">
-      <img
-        src="/3.jpg"
-        alt="Full Width Image"
-        className="w-full h-96 object-cover"
-      />
-      {data.map((item, index) => {
-        return <PageLink pageTitle={item} key={index} />;
+      {pages.map((page, index) => {
+        return (
+          <Link href={`/${page.toLocaleLowerCase()}`}>
+            <PageLink pageTitle={page} key={index} />
+          </Link>
+        );
       })}
     </div>
   );
