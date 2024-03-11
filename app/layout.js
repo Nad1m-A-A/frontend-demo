@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Image
-          width={1200}
-          height={800}
+          width={2200} //! these values will render a low quality image
+          height={1800}
           src="/3.jpg"
           alt="Full Width Image"
           className="w-full h-96 object-cover"
