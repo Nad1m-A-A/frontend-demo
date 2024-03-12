@@ -1,34 +1,37 @@
 "use client";
-import { useState } from "react";
-import { post_request } from "../utils/http_request";
+import { useEffect, useState } from "react";
 import capture_form_values from "../utils/capture_form_values";
+import useHttp from "../utils/useHttp";
 function AddShape({ shapeKeys }) {
   const [creatingShape, setCreatingShape] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fetchInfo, setFetchInfo] = useState({ url: "", values: {} });
+  const [loading, data, error] = useHttp(
+    fetchInfo.url,
+    "POST",
+    fetchInfo.values
+  );
 
-  const storeNewShape = async (shape) => {
-    try {
-      return await post_request(
-        "http://localhost:3000/press/api",
-        shape
-      );
-    } catch (error) {
-        setErrorMessage(error.errorMessage);
-    }
-  };
-
-  const addShapeHandler = async (e) => {
-    const shapeValues = capture_form_values(e);
-    const result = await storeNewShape(shapeValues);
-    if (result.success) {
-      setSuccessMessage(result.message);
+  useEffect(() => {
+    if(!data) return;
+    if (data.success) {
+      setSuccessMessage(data.message);
       setErrorMessage("");
     }
-    if (!result.success) {
+    if (!data.success) {
       setSuccessMessage("");
-      setErrorMessage(result.message);
+      setErrorMessage(data.message);
     }
+  }, [data]);
+
+  const addShapeHandler = (e) => {
+    const formValues = capture_form_values(e);
+    setFetchInfo((prev) => ({
+      ...prev,
+      url: "http://localhost:3000/press/api",
+      values: formValues,
+    }));
   };
 
   return (
