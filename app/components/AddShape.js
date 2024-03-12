@@ -1,38 +1,25 @@
 "use client";
 import { useState } from "react";
-
+import { post_request } from "../utils/http_request";
+import capture_form_values from "../utils/capture_form_values";
 function AddShape({ shapeKeys }) {
   const [creatingShape, setCreatingShape] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const captureShapeValues = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const shapeValues = {};
-    for (const [name, value] of formData.entries()) {
-      shapeValues[name] = value;
-    }
-    return shapeValues;
-  };
+
   const storeNewShape = async (shape) => {
     try {
-      const response = await fetch("http://localhost:3000/press/api", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(shape),
-      });
-      if (!response.ok) throw new Error(response.statusText);
-      return await response.json();
+      return await post_request(
+        "http://localhost:3000/press/api",
+        shape
+      );
     } catch (error) {
-      setErrorMessage(error.message);
+        setErrorMessage(error.errorMessage);
     }
   };
 
   const addShapeHandler = async (e) => {
-    const shapeValues = captureShapeValues(e);
+    const shapeValues = capture_form_values(e);
     const result = await storeNewShape(shapeValues);
     if (result.success) {
       setSuccessMessage(result.message);
@@ -63,11 +50,15 @@ function AddShape({ shapeKeys }) {
       </div>
       {creatingShape && (
         <div id="shape_creator" className="bg-gray-400">
-          <form className="inline-flex flex-col" method="post" onSubmit={addShapeHandler}>
+          <form
+            className="inline-flex flex-col"
+            method="post"
+            onSubmit={addShapeHandler}
+          >
             {shapeKeys.map((shapeKey, index) => {
               return (
                 <input
-                  defaultValue={"1"}
+                  defaultValue={1}
                   key={index}
                   name={shapeKey}
                   placeholder={shapeKey}
