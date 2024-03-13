@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import capture_form_values from "../utils/capture_form_values";
 import useHttp from "../utils/useHttp";
-function AddShape({ shapeKeys }) {
+function AddShape() {
+  const shapeKeys = ["name", "type", "unit", "width", "length", "thickness"]; //! not very dynamic
   const [creatingShape, setCreatingShape] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -14,7 +15,7 @@ function AddShape({ shapeKeys }) {
   );
 
   useEffect(() => {
-    if(!data) return;
+    if (!data) return;
     if (data.success) {
       setSuccessMessage(data.message);
       setErrorMessage("");
@@ -61,7 +62,6 @@ function AddShape({ shapeKeys }) {
             {shapeKeys.map((shapeKey, index) => {
               return (
                 <input
-                  defaultValue={1}
                   key={index}
                   name={shapeKey}
                   placeholder={shapeKey}
