@@ -1,5 +1,6 @@
+import PressShapes from "../components/PressShapes";
 import AddShape from "../components/AddShape";
-import AddPressOrder from "../components/AddPressOrder";
+import AddOrder from "../components/AddOrder";
 import generate_keys_array from "../utils/generate_keys_array";
 async function PressPage() {
   const getShapes = async () => {
@@ -15,15 +16,10 @@ async function PressPage() {
   return (
     <div>
       <h1>Press Page</h1>
-      <div id="press_shapes">
-        {shapes &&
-          shapes.map((shape, index) => {
-            return <div key={index}>{shape.name}</div>;
-          })}
-      </div>
+      <PressShapes shapes={shapes}/>
       <div className="flex gap-5">
-        <AddPressOrder shapes={shapes} />
         <AddShape shapeKeys={shapeKeys} />
+        <AddOrder shapes={shapes} />
       </div>
     </div>
   );

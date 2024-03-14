@@ -43,7 +43,7 @@ function AddShape() {
   };
 
   return (
-    <div>
+    <>
       <div
         id="add_shape"
         className="inline-flex items-center gap-2"
@@ -85,7 +85,7 @@ function AddShape() {
           {errorMessage && <div className="text-red-600">{errorMessage}</div>}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
