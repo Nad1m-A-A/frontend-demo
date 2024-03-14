@@ -3,7 +3,14 @@ import { useEffect, useState } from "react";
 import capture_form_values from "../utils/capture_form_values";
 import useHttp from "../utils/useHttp";
 function AddShape() {
-  const shapeKeys = ["name", "type", "unit", "width", "length", "thickness"]; //! not very dynamic
+  const shapeKeys = [
+    { key: "name", type: "text" },
+    { key: "type", type: "text" },
+    { key: "unit", type: "text" },
+    { key: "width", type: "number" },
+    { key: "length", type: "number" },
+    { key: "thickness", type: "number" },
+  ];
   const [creatingShape, setCreatingShape] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -59,12 +66,14 @@ function AddShape() {
             method="post"
             onSubmit={addShapeHandler}
           >
-            {shapeKeys.map((shapeKey, index) => {
+            {shapeKeys.map(({ key, type }, index) => {
               return (
                 <input
                   key={index}
-                  name={shapeKey}
-                  placeholder={shapeKey}
+                  name={key}
+                  type={type}
+                  step="0.01"
+                  placeholder={key}
                   required
                 />
               );
