@@ -12,7 +12,6 @@ async function PressPage() {
     1,
     Object.keys(shapes[0]).length - 1,
   ]);
-
   return (
     <div>
       <h1>Press Page</h1>

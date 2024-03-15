@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import capture_form_values from "../utils/capture_form_values";
 import OrderName from "./OrderName";
 import OrderShapes from "./OrderShapes";
 import OrderCounts from "./OrderCounts";
+import useHttp from "../utils/useHttp";
 
 function AddPressOrder({ shapes }) {
   const [availableShapes, setAvailableShapes] = useState(shapes);
@@ -12,6 +13,22 @@ function AddPressOrder({ shapes }) {
   const [step, setStep] = useState(1);
   const [addingOrder, setAddingOrder] = useState(false);
   const [orderName, setOrderName] = useState("");
+  const [{ url, payload }, setFetchInfo] = useState({ url: "", payload: {} });
+  const [loading, data, error] = useHttp(url, "POST", payload);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (!data) return;
+    if (data.success) {
+      setSuccessMessage(data.message);
+      setErrorMessage("");
+    }
+    if (!data.success) {
+      setSuccessMessage("");
+      setErrorMessage(data.message);
+    }
+  }, [data]);
 
   const nameHandler = (e) => {
     e.preventDefault();
@@ -40,6 +57,11 @@ function AddPressOrder({ shapes }) {
       name: orderName || undefined,
       details: formValues,
     };
+    setFetchInfo((prev) => ({
+      ...prev,
+      url: "http://localhost:3000/orders",
+      payload: order,
+    }));
   };
 
   return (
@@ -70,6 +92,8 @@ function AddPressOrder({ shapes }) {
           {step === 3 && <OrderCounts props={{ storeOrder, order }} />}
         </div>
       )}
+      {successMessage && <div>{successMessage}</div>}
+      {errorMessage && <div className="text-red-600">{errorMessage}</div>}
     </>
   );
 }

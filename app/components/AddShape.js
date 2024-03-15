@@ -14,11 +14,11 @@ function AddShape() {
   const [creatingShape, setCreatingShape] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [fetchInfo, setFetchInfo] = useState({ url: "", values: {} });
+  const [{url,payload}, setFetchInfo] = useState({ url: "", payload: {} });
   const [loading, data, error] = useHttp(
-    fetchInfo.url,
+    url,
     "POST",
-    fetchInfo.values
+    payload
   );
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function AddShape() {
     setFetchInfo((prev) => ({
       ...prev,
       url: "http://localhost:3000/press/api",
-      values: formValues,
+      payload: formValues,
     }));
   };
 
