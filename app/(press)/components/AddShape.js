@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import capture_form_values from "../utils/capture_form_values";
-import useHttp from "../utils/useHttp";
+import capture_form_values from "../../utils/capture_form_values";
+import useHttp from "../../utils/useHttp";
 function AddShape() {
   const shapeKeys = [
     { key: "name", type: "text" },

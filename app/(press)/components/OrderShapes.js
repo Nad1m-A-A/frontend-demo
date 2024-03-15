@@ -1,4 +1,4 @@
-function OrderShapes({ props: { availableShapes, order, addToOrder, stepHandler } }) {
+function OrderShapes({ props: { availableShapes, order, addToOrder}, setStep}) {
   return (
     <div id="order_shapes">
       <h4 className="m-0">Choose shapes</h4>
@@ -7,7 +7,7 @@ function OrderShapes({ props: { availableShapes, order, addToOrder, stepHandler 
           {shape.name}
         </button>
       ))}
-      <button disabled={!order.length} onClick={() => stepHandler(3)}>
+      <button disabled={!order.length} onClick={() => setStep(3)}>
         Next
       </button>
     </div>

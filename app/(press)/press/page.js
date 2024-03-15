@@ -1,7 +1,7 @@
 import PressShapes from "../components/PressShapes";
 import AddShape from "../components/AddShape";
 import AddOrder from "../components/AddOrder";
-import generate_keys_array from "../utils/generate_keys_array";
+import generate_keys_array from "../../utils/generate_keys_array";
 async function PressPage() {
   const getShapes = async () => {
     const response = await fetch("http://localhost:3000/press/api");
