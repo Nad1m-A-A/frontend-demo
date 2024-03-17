@@ -1,7 +1,4 @@
-export default (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
+export default (formData) => {
   const inputValues = {};
   for (const [name, value] of formData.entries()) {
     inputValues[name] = value;

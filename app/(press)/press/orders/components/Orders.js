@@ -1,4 +1,3 @@
-import generate_keys_array from "@/app/utils/generate_keys_array";
 
 function Orders({ orders }) {
   return (
@@ -8,7 +7,7 @@ function Orders({ orders }) {
           <ul key={index}>
             <h4>{name}</h4>
             {Object.entries(details).map(([key, value]) => (
-              <li>{key}:{value}</li>
+              <li key={key}>{key}:{value}</li>
             ))}
           </ul>
         );
