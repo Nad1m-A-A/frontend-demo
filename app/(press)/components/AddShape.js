@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import capture_form_values from "../../utils/capture_form_values";
 import useHttp from "../../utils/useHttp";

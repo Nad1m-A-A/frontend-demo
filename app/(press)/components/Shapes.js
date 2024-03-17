@@ -1,10 +1,10 @@
-async function PressShapes({ shapes }) {
+function Shapes({ shapes }) {
   return (
-    <div id="press_shapes">
+    <div id="shapes">
       {shapes.map((shape, index) => {
         return <div key={index}>{shape.name}</div>;
       })}
     </div>
   );
 }
-export default PressShapes;
+export default Shapes;

@@ -1,9 +1,9 @@
-function OrderCounts({ props: { storeOrder, order } }) {
+function OrderCounts({ props: { storeOrder, selectedShapes } }) {
   return (
     <div id="order_counts">
       <h4 className="m-0">add numbers</h4>
       <form method="post" onSubmit={storeOrder}>
-        {order.map((shape, index) => (
+        {selectedShapes.map((shape, index) => (
           <label key={index}>
             {shape.name}
             <input

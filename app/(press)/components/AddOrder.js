@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import capture_form_values from "../../utils/capture_form_values";
 import Add from "./Add";
@@ -56,7 +54,7 @@ function AddPressOrder({ shapes }) {
     };
     setFetchInfo((prev) => ({
       ...prev,
-      url: "http://localhost:3000/orders",
+      url: "http://localhost:3000/press/api-orders",
       payload: order,
     }));
   };
