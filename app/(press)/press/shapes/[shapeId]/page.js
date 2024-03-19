@@ -2,7 +2,6 @@ import ShapeEditor from "../components/ShapeEditor";
 import ShapeDetails from "../components/ShapeDetails";
 
 async function ShapePage({ params: {shapeId} }) {
-  //! params is value of this dynamic path (shapeId in this case), searchParams is data sent in the url from the parent page
   const response = await fetch(
     `http://localhost:5000/shapes/${shapeId}`
   );

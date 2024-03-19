@@ -1,7 +1,9 @@
 "use client";
-import { createShape } from "@/app/actions/createShape";
 import { useState, useRef } from "react";
 import Button from "./Button";
+import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
+import capture_form_values from "@/app/utils/capture_form_values";
+import createShape from "@/app/actions/createShape";
 
 const shapeKeys = [
   { key: "name", type: "text" },
@@ -15,8 +17,10 @@ const shapeKeys = [
 function AddShape() {
   const formRef = useRef(null);
   const [feedback, setFeedback] = useState("");
+
   const createShapeHandler = async (formData) => {
-    const feedback = await createShape(formData);
+    const inputs = filter_empty_inputs(capture_form_values(formData));
+    const feedback = await createShape(inputs);
     console.log(feedback);
     setFeedback(feedback);
     if (feedback.success) formRef.current.reset();
@@ -29,7 +33,7 @@ function AddShape() {
         id="add_shape"
         ref={formRef}
         className="flex flex-col items-center"
-        onSubmit={createShapeHandler}
+        action={createShapeHandler}
       >
         {shapeKeys.map(({ key, type }, index) => (
           <input

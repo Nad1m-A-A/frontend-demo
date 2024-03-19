@@ -1,7 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-export const createShape = async (inputs) => {
+export default async (inputs) => {
   try {
     const sendShape = await fetch("http://localhost:5000/shapes", {
       method: "POST",
