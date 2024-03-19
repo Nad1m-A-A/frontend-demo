@@ -1,10 +1,11 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-export const createShape = async (inputs) => {
+export const editShape = async (inputs, id) => {
   try {
-    const sendShape = await fetch("http://localhost:5000/shapes", {
-      method: "POST",
+
+    const sendShape = await fetch(`http://localhost:5000/shapes/${id}`, {
+      method: "PATCH",
       body: JSON.stringify(inputs),
       headers: {
         "Content-Type": "application/json",
@@ -14,6 +15,6 @@ export const createShape = async (inputs) => {
     const feedback = await sendShape.json();
     return feedback;
   } catch (error) {
-    return {message: error.message}
+    return { message: error.message };
   }
 };

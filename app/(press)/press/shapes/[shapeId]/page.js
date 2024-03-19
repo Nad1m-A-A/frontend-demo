@@ -1,14 +1,16 @@
-"use client";
-export default function Shape({ params, searchParams }) {
-  console.log(params);
+import EditShape from "../components/EditShape";
+import ShapeInfo from "../components/ShapeInfo";
+
+export default async function Shape({ params: {shapeId} }) {
+  //! params is value of this dynamic path (shapeId in this case), searchParams is data sent in the url from the parent page
+  const response = await fetch(
+    `http://localhost:5000/shapes/${shapeId}`
+  );
+  const { _id, __v, ...shape } = await response.json();
   return (
     <div id="shape">
-      {Object.entries(searchParams).map(([key, value]) => (
-        <div key={key}>
-          {key}: {value}
-        </div>
-      ))}
-      <button>Edit</button>
+      <EditShape shape={shape} shapeId={shapeId} />
+      <ShapeInfo shape={shape} />
     </div>
   );
 }

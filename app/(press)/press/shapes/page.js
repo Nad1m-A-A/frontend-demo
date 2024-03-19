@@ -1,7 +1,7 @@
 import Form from "./components/Form";
 import Shapes from "./components/Shapes";
 
-async function shapesPage() {
+async function ShapesPage() {
   const response = await fetch("http://localhost:5000/shapes");
   const shapes = await response.json();
 
@@ -13,4 +13,4 @@ async function shapesPage() {
   );
 }
 
-export default shapesPage;
+export default ShapesPage;
