@@ -1,5 +1,5 @@
-import Form from "./components/Form";
-import Shapes from "./components/Shapes";
+import AddShape from "./components/AddShape";
+import ShapeList from "./components/ShapeList";
 
 async function ShapesPage() {
   const response = await fetch("http://localhost:5000/shapes");
@@ -7,8 +7,8 @@ async function ShapesPage() {
 
   return (
     <div>
-      <Shapes shapes={shapes} />
-      <Form />
+      <ShapeList shapes={shapes} />
+      <AddShape />
     </div>
   );
 }

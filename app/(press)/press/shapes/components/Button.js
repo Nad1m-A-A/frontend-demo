@@ -1,7 +1,7 @@
 import { useFormStatus } from "react-dom";
-function Button() {
+function Button({className}) {
   const { pending } = useFormStatus();
-  return <button>{pending ? "loading" : "Add"}</button>;
+  return <button className={className}>{pending ? "loading" : "Add"}</button>;
 }
 
 export default Button;
