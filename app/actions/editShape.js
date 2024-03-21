@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 
 export default async (inputs, id) => {
   try {
-
     const sendShape = await fetch(`http://localhost:5000/shapes/${id}`, {
       method: "PATCH",
       body: JSON.stringify(inputs),

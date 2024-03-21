@@ -37,8 +37,11 @@ function ShapeEditor({ shape, shapeId }) {
           className="flex flex-col"
         >
           {Object.entries(shape).map(([key, value], index) => (
-            <div className="flex gap-3 pb-2 justify-between items-center">
-              <label key={index}>{key}:</label>
+            <div
+              key={index}
+              className="flex gap-3 pb-2 justify-between items-center"
+            >
+              <label>{key}:</label>
               <input
                 name={key}
                 placeholder={value}
