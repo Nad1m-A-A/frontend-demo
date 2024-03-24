@@ -11,6 +11,7 @@ function ShapeList({ shapes }) {
           {name}
         </Link>
       ))}
+      {shapes.length === 0 && <div>No shapes available</div>}
     </div>
   );
 }

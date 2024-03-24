@@ -8,7 +8,7 @@ import OrderCounts from "./OrderCounts";
 
 function AddPressOrder({ shapes }) {
   const [availableShapes, setAvailableShapes] = useState(shapes);
-  const [selectedShapes, addSelectedShape] = useState([]);
+  const [selectedShapes, setSelectedShapes] = useState([]);
   const [orderName, setOrderName] = useState("");
   const [step, setStep] = useState(1);
 
@@ -20,7 +20,7 @@ function AddPressOrder({ shapes }) {
 
   const getOrderShape = (e) => {
     const shapeName = e.target.innerHTML;
-    addSelectedShape((prev) => [...prev, { name: shapeName }]);
+    setSelectedShapes((prev) => [...prev, { name: shapeName }]);
     const remainingShapes = availableShapes.filter(
       (item) => item.name !== shapeName
     );
@@ -38,7 +38,7 @@ function AddPressOrder({ shapes }) {
       ),
     };
     setAvailableShapes(shapes);
-    addSelectedShape([]);
+    setSelectedShapes([]);
     setOrderName("");
 
     const feedback = await storeOrder(order);
@@ -48,19 +48,21 @@ function AddPressOrder({ shapes }) {
 
   return (
     <>
-      <div id="order_creator" className="max-w-md mx-auto">
-        <h3>New Order</h3>
-        {step === 1 && <OrderName getOrderName={getOrderName} />}
-        {step === 2 && (
-          <OrderShapes
-            props={{ availableShapes, selectedShapes, getOrderShape }}
-            setStep={setStep}
-          />
-        )}
-        {step === 3 && (
-          <OrderCounts props={{ storeOrderHandler, selectedShapes }} />
-        )}
-      </div>
+      {shapes.length !== 0 && (
+        <div id="order_creator" className="max-w-md mx-auto">
+          <h3>New Order</h3>
+          {step === 1 && <OrderName getOrderName={getOrderName} />}
+          {step === 2 && (
+            <OrderShapes
+              props={{ availableShapes, selectedShapes, getOrderShape }}
+              setStep={setStep}
+            />
+          )}
+          {step === 3 && (
+            <OrderCounts props={{ storeOrderHandler,  setSelectedShapes, selectedShapes }} />
+          )}
+        </div>
+      )}
     </>
   );
 }

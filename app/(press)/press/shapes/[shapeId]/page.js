@@ -1,5 +1,4 @@
 import ShapeEditor from "../components/ShapeEditor";
-import ShapeDetails from "../components/ShapeDetails";
 
 async function ShapePage({ params: {shapeId} }) {
   const response = await fetch(
@@ -9,7 +8,6 @@ async function ShapePage({ params: {shapeId} }) {
   return (
     <div id="shape" className="flex flex-col items-center">
       <ShapeEditor shape={shape} shapeId={shapeId} />
-      <ShapeDetails shape={shape} />
     </div>
   );
 }

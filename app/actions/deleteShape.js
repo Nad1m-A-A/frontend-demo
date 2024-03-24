@@ -1,18 +1,16 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-export default async (inputs, id) => {
+export default async (id) => {
   try {
-    const sendShape = await fetch(`http://localhost:5000/shapes/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(inputs),
+    const deleteOrder = await fetch(`http://localhost:5000/shapes/${id}`, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     });
     revalidatePath("/press/shapes");
-    revalidatePath(`/press/shapes/${id}`);
-    const feedback = await sendShape.json();
+    const feedback = await deleteOrder.json();
     return feedback;
   } catch (error) {
     return { message: error.message };

@@ -1,9 +1,6 @@
-"use client";
-import { useState, useRef } from "react";
-import Button from "./Button";
-import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
 import capture_form_values from "@/app/utils/capture_form_values";
 import createShape from "@/app/actions/createShape";
+import filter_action_keys from "@/app/utils/filter_action_keys";
 
 const shapeKeys = [
   { key: "name", type: "text" },
@@ -15,25 +12,18 @@ const shapeKeys = [
 ];
 
 function AddShape() {
-  const formRef = useRef(null);
-  const [feedback, setFeedback] = useState("");
-
-  const createShapeHandler = async (formData) => {
-    const inputs = filter_empty_inputs(capture_form_values(formData));
-    const feedback = await createShape(inputs);
-    console.log(feedback);
-    setFeedback(feedback);
-    if (feedback.success) formRef.current.reset();
-  };
-
   return (
     <div className="flex flex-col items-center mb-8">
-      <span className="text-red-500 mb-2">{feedback.message}</span>
+      <h3>Add Shape</h3>
       <form
         id="add_shape"
-        ref={formRef}
         className="flex flex-col items-center"
-        action={createShapeHandler}
+        action={async (formData) => {
+          "use server";
+          const inputs = filter_action_keys(capture_form_values(formData));
+          const feedback = await createShape(inputs);
+          console.log(feedback);
+        }}
       >
         {shapeKeys.map(({ key, type }, index) => (
           <input
@@ -46,7 +36,9 @@ function AddShape() {
             className="mb-2 px-4 py-2 border border-gray-300 rounded"
           />
         ))}
-        <Button className="bg-blue-600 border-0 text-white shadow-xl px-4 py-2 rounded mb-4" />
+        <button className="bg-blue-600 text-white shadow-xl px-4 py-2 rounded border-0">
+          ADD
+        </button>
         <button
           type="reset"
           className="bg-green-600 text-white shadow-xl px-4 py-2 rounded border-0"

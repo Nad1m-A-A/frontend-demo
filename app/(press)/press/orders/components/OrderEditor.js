@@ -1,6 +1,6 @@
 import editOrder from "@/app/actions/editOrder";
 import capture_form_values from "@/app/utils/capture_form_values";
-import filter_from_values from "@/app/utils/filter_from_values";
+import filter_from_values from "@/app/utils/filter_action_keys";
 
 function OrderEditor({ order }) {
   return (
@@ -15,13 +15,13 @@ function OrderEditor({ order }) {
     >
       <label>
         name
-        <input name="name" defaultValue={order.name} placeholder={order.name} />
+        <input required name="name" defaultValue={order.name} placeholder={order.name} />
       </label>
       {Object.entries(order.details).map(([key, value], index) => (
         <div key={index}>
           <label>
             {key}
-            <input name={key} defaultValue={value} placeholder={value} />
+            <input required name={key} defaultValue={value} placeholder={value} />
           </label>
         </div>
       ))}

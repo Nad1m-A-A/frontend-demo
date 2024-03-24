@@ -9,8 +9,8 @@ async function OrdersPage() {
   return (
     <div className="page">
       <h3>Orders</h3>
-      {orders && <OrdersList orders={orders} />}
-      {shapes && <AddPressOrder shapes={shapes} />}
+      <OrdersList orders={orders} />
+      <AddPressOrder shapes={shapes} />
     </div>
   );
 }

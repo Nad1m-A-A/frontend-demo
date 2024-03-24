@@ -1,6 +1,6 @@
 import updateProduction from "@/app/actions/updateProduction";
 import capture_form_values from "@/app/utils/capture_form_values";
-import filter_from_values from "@/app/utils/filter_from_values";
+import filter_action_keys from "@/app/utils/filter_action_keys";
 
 function OrdersProductionList({ orders }) {
   return (
@@ -10,7 +10,7 @@ function OrdersProductionList({ orders }) {
           key={index}
           action={async (formData) => {
             "use server";
-            const inputs = filter_from_values(capture_form_values(formData));
+            const inputs = filter_action_keys(capture_form_values(formData));
             const feedback = await updateProduction(inputs, _id);
             console.log(feedback);
           }}
@@ -19,13 +19,14 @@ function OrdersProductionList({ orders }) {
           {Object.entries(production).map(([key, value], index) => (
             <div key={index}>
               <label>
-              {key}:<input name={key} defaultValue={value} placeholder={value} />
+              {key}:<input required name={key} defaultValue={value} placeholder={value} />
               </label>
             </div>
           ))}
           <button>save changes</button>
         </form>
       ))}
+      {orders.length === 0 && <div>No orders available</div>}
     </div>
   );
 }
