@@ -1,17 +1,17 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-export default async (order) => {
+export default async (inputs, id) => {
   try {
-    const sendOrder = await fetch("http://localhost:5000/orders", {
-      method: "POST",
-      body: JSON.stringify(order),
+    const sendOrder = await fetch(`http://localhost:5000/orders/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(inputs),
       headers: {
         "Content-Type": "application/json",
       },
     });
     revalidatePath("/press/orders");
-    revalidatePath("/press/orders/production");
+    revalidatePath(`/press/orders/${id}`);
     const feedback = await sendOrder.json();
     return feedback;
   } catch (error) {

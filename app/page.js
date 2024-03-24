@@ -6,8 +6,8 @@ const HomePage = () => {
     <div className="relative w-full">
       {pages.map((page, index) => {
         return (
-          <Link href={`/${page.toLocaleLowerCase()}`}>
-            <PageLink pageTitle={page} key={index} />
+          <Link key={index} href={`/${page.toLocaleLowerCase()}`}>
+            <PageLink pageTitle={page} />
           </Link>
         );
       })}

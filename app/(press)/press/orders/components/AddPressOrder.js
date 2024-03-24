@@ -1,23 +1,19 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import capture_form_values from "@/app/utils/capture_form_values";
+import storeOrder from "@/app/actions/storeOrder";
 import OrderName from "./OrderName";
 import OrderShapes from "./OrderShapes";
 import OrderCounts from "./OrderCounts";
-import useHttp from "@/app/utils/useHttp";
-import storeOrder from "@/app/actions/storeOrder";
 
 function AddPressOrder({ shapes }) {
   const [availableShapes, setAvailableShapes] = useState(shapes);
   const [selectedShapes, addSelectedShape] = useState([]);
   const [orderName, setOrderName] = useState("");
   const [step, setStep] = useState(1);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const getOrderName = (formValues) => {
     const inputs = capture_form_values(formValues);
-    console.log(inputs);
     setOrderName(inputs.name);
     setStep(2);
   };
@@ -33,11 +29,18 @@ function AddPressOrder({ shapes }) {
 
   const storeOrderHandler = async (formValues) => {
     const inputs = capture_form_values(formValues);
+
     const order = {
       name: orderName || undefined,
       details: inputs,
+      production: Object.fromEntries(
+        Object.keys(inputs).map((key) => [key, "0"])
+      ),
     };
-    console.log(order);
+    setAvailableShapes(shapes);
+    addSelectedShape([]);
+    setOrderName("");
+
     const feedback = await storeOrder(order);
     if (feedback.success) setStep(1);
     console.log(feedback);
@@ -46,6 +49,7 @@ function AddPressOrder({ shapes }) {
   return (
     <>
       <div id="order_creator" className="max-w-md mx-auto">
+        <h3>New Order</h3>
         {step === 1 && <OrderName getOrderName={getOrderName} />}
         {step === 2 && (
           <OrderShapes
@@ -57,16 +61,6 @@ function AddPressOrder({ shapes }) {
           <OrderCounts props={{ storeOrderHandler, selectedShapes }} />
         )}
       </div>
-      {successMessage && (
-        <div className="bg-green-200 text-green-800 py-2 px-4 rounded">
-          {successMessage}
-        </div>
-      )}
-      {errorMessage && (
-        <div className="bg-red-200 text-red-800 py-2 px-4 rounded">
-          {errorMessage}
-        </div>
-      )}
     </>
   );
 }

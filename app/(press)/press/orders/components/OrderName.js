@@ -1,7 +1,6 @@
 function OrderName({ getOrderName }) {
   return (
     <div id="order_name" className="max-w-md mx-auto">
-      <h4 className="m-0 text-lg font-semibold">Choose Name</h4>
       <form action={getOrderName} className="mt-4">
         <label className="block">
           Order name
