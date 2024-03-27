@@ -14,6 +14,7 @@ export default async (inputs, id) => {
       }
     );
     revalidatePath("/press/orders");
+    revalidatePath("/press/orders/production");
     revalidatePath(`/press/orders/${id}`);
     const feedback = await updateProduction.json();
     return feedback;

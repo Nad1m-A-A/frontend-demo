@@ -11,11 +11,12 @@ async function Demand({ orderProduction, orderDetails }) {
     if (shape) {
       const mDemand =
         (parseFloat(orderDetails[key] - orderProduction[key]) * shape.length) /
-        1000; //@ 1000 is: m -> cm
+        10; //@ mm -> cm
       const alloyValue = shape.width / defaultAlloyDetails.width;
       const alloyWeight = alloyValue * defaultAlloyDetails.weight;
       const gDemand =
-        (mDemand * alloyWeight) / defaultAlloyDetails.thicklen[shape.thickness];
+        (mDemand * alloyWeight) /
+        defaultAlloyDetails.thicklen[shape.thickness];
 
       demand.push({
         length: mDemand,
@@ -23,12 +24,13 @@ async function Demand({ orderProduction, orderDetails }) {
       });
     }
   }
+  // console.log(demand[0]);
   return (
     <>
       {demand.map(({ length, weight }, index) => (
         <li key={index}>
-          {length === 0 && <h5>order complete</h5>}
-          {length !== 0 && `${weight}g /{shapes[index].width}mm /{length}m`}
+          {length <= 0 && <h5>order complete</h5>}
+          {length > 0 && `${weight}g /${shapes[index].width}mm /${length}cm`}
         </li>
       ))}
     </>

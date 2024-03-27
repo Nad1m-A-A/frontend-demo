@@ -29,11 +29,12 @@ function AddPressOrder({ shapes }) {
 
   const storeOrderHandler = async (formValues) => {
     const inputs = capture_form_values(formValues);
+    console.log(inputs);
     const order = {
       name: orderName || undefined,
       details: inputs,
       production: Object.fromEntries(
-        Object.keys(inputs).map((key) => [key, "0"])
+        Object.keys(inputs).map((key) => [key, 0])
       ),
     };
 

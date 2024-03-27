@@ -29,6 +29,7 @@ function ShapeEditor({ shape, shapeId }) {
             <input
               name={key}
               placeholder={value}
+              defaultValue={value}
               key={key}
               className="border border-gray-300 rounded px-3 py-2 mt-1"
             />

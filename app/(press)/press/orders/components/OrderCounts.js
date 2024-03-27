@@ -2,7 +2,6 @@ function OrderCounts({
   props: { storeOrderHandler, setSelectedShapes, selectedShapes },
 }) {
   const handleDeleteShape = (index) => {
-    // Create a copy of selectedShapes array
     const updatedShapes = [...selectedShapes];
     updatedShapes.splice(index, 1);
     setSelectedShapes(updatedShapes);
