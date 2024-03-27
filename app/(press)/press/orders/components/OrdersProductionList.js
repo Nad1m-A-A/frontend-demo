@@ -19,7 +19,7 @@ function OrdersProductionList({ orders }) {
           {Object.entries(production).map(([key, value], index) => (
             <div key={index}>
               <label>
-              {key}:<input required name={key} defaultValue={value} placeholder={value} />
+              {key}:<input required type="number" name={key} defaultValue={value} placeholder={value} />
               </label>
             </div>
           ))}

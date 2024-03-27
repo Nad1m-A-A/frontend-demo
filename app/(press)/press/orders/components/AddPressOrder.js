@@ -29,7 +29,6 @@ function AddPressOrder({ shapes }) {
 
   const storeOrderHandler = async (formValues) => {
     const inputs = capture_form_values(formValues);
-
     const order = {
       name: orderName || undefined,
       details: inputs,
@@ -37,6 +36,7 @@ function AddPressOrder({ shapes }) {
         Object.keys(inputs).map((key) => [key, "0"])
       ),
     };
+
     setAvailableShapes(shapes);
     setSelectedShapes([]);
     setOrderName("");
