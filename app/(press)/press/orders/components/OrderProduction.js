@@ -1,6 +1,8 @@
 import updateProduction from "@/app/actions/updateProduction";
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_action_keys from "@/app/utils/filter_action_keys";
+import ProductionDemand from "./ProductionDemand";
+
 function OrderProduction({ order: { _id, name, details, production } }) {
   const productionStatus = Object.keys(details).map(
     (key) => parseInt(production[key]) >= parseInt(details[key])
@@ -18,12 +20,11 @@ function OrderProduction({ order: { _id, name, details, production } }) {
               ? inputs[key] + production[key]
               : production[key];
           });
-          console.log(preservedProduction);
           const feedback = await updateProduction(preservedProduction, _id);
           console.log(feedback);
         }}
       >
-        <h3>{name} asdf</h3>
+        <h3>{name}</h3>
         {Object.entries(production).map(([key, value], index) => (
           <div key={index}>
             <label>
@@ -36,6 +37,10 @@ function OrderProduction({ order: { _id, name, details, production } }) {
                 }`}
               />
             </label>
+            <ProductionDemand
+              orderProduction={production}
+              orderDetails={details}
+            />
           </div>
         ))}
         <button>save changes</button>

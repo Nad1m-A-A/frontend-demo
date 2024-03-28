@@ -1,8 +1,11 @@
-import OrdersPage from "./orders/page";
+"use client";
+import { useRouter } from "next/navigation";
 async function PressPage() {
+  const router = useRouter();
+  router.push("/press/orders");
   return (
     <div>
-      <h1>PressPage</h1>
+      <h1>Press Page</h1>
     </div>
   );
 }

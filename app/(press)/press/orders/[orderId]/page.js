@@ -5,6 +5,7 @@ async function OrderPage({ params }) {
     `http://localhost:5000/orders/${params.orderId}`
   );
   const order = await OrderResponse.json();
+  console.log("order",order);
   return (
     <div className="page">
       <h3>Edit Order</h3>

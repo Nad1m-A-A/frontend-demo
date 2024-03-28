@@ -30,7 +30,7 @@ function AddShape() {
             key={index}
             name={key}
             type={type}
-            step="0.1"
+            step="0.01"
             placeholder={key}
             required
             className="mb-2 px-4 py-2 border border-gray-300 rounded"

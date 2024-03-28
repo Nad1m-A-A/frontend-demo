@@ -12,6 +12,8 @@ export default async (inputs, id) => {
     });
     revalidatePath("/press/shapes");
     revalidatePath(`/press/shapes/${id}`);
+    revalidatePath(`/press/orders`);
+    revalidatePath(`/press/orders/production`);
     const feedback = await sendShape.json();
     return feedback;
   } catch (error) {
