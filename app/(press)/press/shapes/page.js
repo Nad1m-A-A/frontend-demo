@@ -6,7 +6,7 @@ async function ShapesPage() {
   const shapes = await response.json();
 
   return (
-    <div>
+    <div className="page">
       <h3>Shapes</h3>
       <ShapeList shapes={shapes} />
       <AddShape />

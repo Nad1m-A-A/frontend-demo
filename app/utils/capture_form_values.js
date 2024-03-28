@@ -4,6 +4,5 @@ export default (formData) => {
     inputValues[name] =
       value.trim() === "" ? value : !isNaN(value) ? parseFloat(value) : value;
   }
-  console.log(inputValues);
   return inputValues;
 };

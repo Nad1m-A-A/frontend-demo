@@ -1,6 +1,7 @@
 import capture_form_values from "@/app/utils/capture_form_values";
-import createShape from "@/app/actions/createShape";
 import filter_action_keys from "@/app/utils/filter_action_keys";
+import createShape from "@/app/actions/createShape";
+import Button from "./Button";
 
 const shapeKeys = [
   { key: "name", type: "text" },
@@ -36,9 +37,10 @@ function AddShape() {
             className="mb-2 px-4 py-2 border border-gray-300 rounded"
           />
         ))}
-        <button className="bg-blue-600 text-white shadow-xl px-4 py-2 rounded border-0">
-          ADD
-        </button>
+        <Button
+          className="bg-blue-600 text-white shadow-xl px-4 py-2 rounded border-0"
+          text="Add"
+        />
         <button
           type="reset"
           className="bg-green-600 text-white shadow-xl px-4 py-2 rounded border-0"

@@ -3,11 +3,13 @@ import capture_form_values from "@/app/utils/capture_form_values";
 import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
 import filter_action_keys from "@/app/utils/filter_action_keys";
 import DeleteShape from "../components/DeleteShape";
+import Button from "./Button";
 function ShapeEditor({ shape, shapeId }) {
   return (
     <div>
       <form
-        id="edit_shape"
+        id="shape_editer"
+        className="flex flex-col"
         action={async (formData) => {
           "use server";
           const inputs = filter_action_keys(
@@ -17,7 +19,6 @@ function ShapeEditor({ shape, shapeId }) {
           const feedback = await editShape(inputs, shapeId);
           console.log(feedback);
         }}
-        className="flex flex-col"
       >
         <h3>Edit Shape</h3>
         {Object.entries(shape).map(([key, value], index) => (
@@ -34,9 +35,10 @@ function ShapeEditor({ shape, shapeId }) {
             />
           </div>
         ))}
-        <button className="bg-green-600 border-0 shadow-xl text-white px-4 py-2 rounded">
-          Save changes
-        </button>
+        <Button
+          className="bg-green-600 border-0 shadow-xl text-white px-4 py-2 rounded"
+          text="Save Changes"
+        />
       </form>
       <DeleteShape shapeId={shapeId} />
     </div>
