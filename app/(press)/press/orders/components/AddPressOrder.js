@@ -29,7 +29,6 @@ function AddPressOrder({ shapes }) {
 
   const storeOrderHandler = async (formValues) => {
     const inputs = capture_form_values(formValues);
-    console.log(inputs);
     const order = {
       name: orderName || undefined,
       details: inputs,

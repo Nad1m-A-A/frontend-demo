@@ -2,9 +2,7 @@ function OrderCounts({
   props: { storeOrderHandler, setSelectedShapes, selectedShapes },
 }) {
   const handleDeleteShape = (index) => {
-    const updatedShapes = [...selectedShapes];
-    updatedShapes.splice(index, 1);
-    setSelectedShapes(updatedShapes);
+    setSelectedShapes(selectedShapes.splice(index, 1));
   };
 
   return (
@@ -14,6 +12,7 @@ function OrderCounts({
         {selectedShapes.map((shape, index) => (
           <label key={index} className="block mb-4">
             {shape.name}
+            {": "}
             <input
               className="border border-gray-300 rounded px-3 py-2 mt-1"
               name={shape.name}

@@ -3,7 +3,7 @@ import deleteOrder from "@/app/actions/deleteOrder";
 
 function DeleteOrder({ orderId }) {
   const deleteOrderHandler = async () => {
-    const deleteConfirmation = window.confirm("Click (OK) to delete order");
+    const deleteConfirmation = window.confirm("Click (OK) to confirm.");
     if (!deleteConfirmation) return;
     const feedback = await deleteOrder(orderId);
   };
