@@ -6,6 +6,7 @@ function DeleteOrder({ orderId }) {
     const deleteConfirmation = window.confirm("Click (OK) to confirm.");
     if (!deleteConfirmation) return;
     const feedback = await deleteOrder(orderId);
+    console.log(feedback);
   };
   return (
     <form id="delete_shape" action={deleteOrderHandler}>

@@ -1,5 +1,5 @@
 import compute_press_demand from "@/app/utils/compute_press_demand";
-async function ProductionDemand({ orderProduction, orderDetails }) {
+async function ProductionDemand({ orderProduction, orderDetails, index }) {
   const alloyResponse = await fetch("http://localhost:5000/alloy");
   const { details: defaultAlloyDetails } = await alloyResponse.json();
   const shapesResponse = await fetch("http://localhost:5000/shapes");
@@ -13,12 +13,13 @@ async function ProductionDemand({ orderProduction, orderDetails }) {
   );
   return (
     <>
-      {demand.map(({ length, weight }, index) => (
+      {Object.entries(demand[index]).map(([key, value]) => (
         <div key={index}>
-          {length > 0 &&
-            `${length}cm /${Object.keys(orderDetails).map(
-              (key) => orderDetails[key] - orderProduction[key]
-            )}ps`}
+          {key === "weight"
+            ? ""
+            : key === "length"
+            ? `${value}cm`
+            : `${value}ps`}
         </div>
       ))}
     </>

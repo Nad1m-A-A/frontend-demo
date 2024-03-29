@@ -1,7 +1,7 @@
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_action_keys from "@/app/utils/filter_action_keys";
 import createShape from "@/app/actions/createShape";
-import Button from "./Button";
+import Button from "../../../../components/Button";
 
 const shapeKeys = [
   { key: "name", type: "text" },

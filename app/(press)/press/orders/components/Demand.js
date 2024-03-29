@@ -13,10 +13,10 @@ async function Demand({ orderProduction, orderDetails }) {
   );
   return (
     <>
-      {demand.map(({ length, weight }, index) => (
+      {demand.map(({ weight }, index) => (
         <div key={index}>
-          {length <= 0 && <h5>order complete</h5>}
-          {length > 0 && `${weight}g /${shapes[index].width}mm`}
+          {weight <= 0 && <h5>order complete</h5>}
+          {weight > 0 && `${weight}g /${shapes[index].width}mm`}
         </div>
       ))}
     </>

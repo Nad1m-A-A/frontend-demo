@@ -3,7 +3,7 @@ import capture_form_values from "@/app/utils/capture_form_values";
 import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
 import filter_action_keys from "@/app/utils/filter_action_keys";
 import DeleteShape from "../components/DeleteShape";
-import Button from "./Button";
+import Button from "@/app/components/Button";
 function ShapeEditor({ shape, shapeId }) {
   return (
     <div>
@@ -16,7 +16,7 @@ function ShapeEditor({ shape, shapeId }) {
             filter_empty_inputs(capture_form_values(formData))
           );
           if (JSON.stringify(inputs) === "{}") return;
-          const feedback = await editShape(inputs, shapeId);
+          const feedback = await editShape(inputs, shapeId, shape.name);
           console.log(feedback);
         }}
       >

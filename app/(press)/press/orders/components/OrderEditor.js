@@ -1,4 +1,5 @@
 import editOrder from "@/app/actions/editOrder";
+import Button from "@/app/components/Button";
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_from_values from "@/app/utils/filter_action_keys";
 
@@ -25,7 +26,7 @@ function OrderEditor({ order }) {
           </label>
         </div>
       ))}
-      <button type="submit">Save</button>
+      <Button text="Save"/>
     </form>
   );
 }

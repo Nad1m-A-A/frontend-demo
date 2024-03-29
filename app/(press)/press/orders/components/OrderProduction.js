@@ -1,11 +1,13 @@
 import updateProduction from "@/app/actions/updateProduction";
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_action_keys from "@/app/utils/filter_action_keys";
+import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
 import ProductionDemand from "./ProductionDemand";
+import Button from "@/app/components/Button";
 
 function OrderProduction({ order: { _id, name, details, production } }) {
   const productionStatus = Object.keys(details).map(
-    (key) => parseInt(production[key]) >= parseInt(details[key])
+    (key) => production[key] >= details[key]
   );
   const allComplete = productionStatus.every((status) => status === true);
   return (
@@ -13,7 +15,10 @@ function OrderProduction({ order: { _id, name, details, production } }) {
       <form
         action={async (formData) => {
           "use server";
-          const inputs = filter_action_keys(capture_form_values(formData));
+          const inputs = filter_action_keys(
+            filter_empty_inputs(capture_form_values(formData))
+          );
+          if (JSON.stringify(inputs) === "{}") return;
           const preservedProduction = {};
           Object.keys(production).map((key) => {
             preservedProduction[key] = inputs[key]
@@ -26,11 +31,12 @@ function OrderProduction({ order: { _id, name, details, production } }) {
       >
         <h3>{name}</h3>
         {Object.entries(production).map(([key, value], index) => (
-          <div key={index}>
+          <div className="flex gap-5" key={index}>
             <label>
               {key}:
               <input
                 type="number"
+                step="0.5"
                 name={key}
                 placeholder={`${value} ${
                   productionStatus[index] ? "(complete)" : ""
@@ -38,12 +44,13 @@ function OrderProduction({ order: { _id, name, details, production } }) {
               />
             </label>
             <ProductionDemand
+              index={index}
               orderProduction={production}
               orderDetails={details}
             />
           </div>
         ))}
-        <button>save changes</button>
+        <Button text={"Save Changes"}/>
       </form>
     </>
   );
