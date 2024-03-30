@@ -1,13 +1,7 @@
-"use client";
-import { useRouter } from "next/navigation";
+import OrdersPage from "./orders/page";
+
 async function PressPage() {
-  const router = useRouter();
-  router.push("/press/orders");
-  return (
-    <div>
-      <h1>Press Page</h1>
-    </div>
-  );
+  return <OrdersPage />;
 }
 
 export default PressPage;

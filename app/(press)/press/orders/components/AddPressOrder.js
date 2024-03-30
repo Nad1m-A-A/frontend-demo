@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import capture_form_values from "@/app/utils/capture_form_values";
-import storeOrder from "@/app/actions/storeOrder";
+import storeOrder from "@/app/actions/postAction";
 import OrderName from "./OrderName";
 import OrderShapes from "./OrderShapes";
 import OrderCounts from "./OrderCounts";
@@ -41,7 +41,10 @@ function AddPressOrder({ shapes }) {
     setSelectedShapes([]);
     setOrderName("");
 
-    const feedback = await storeOrder(order);
+    const feedback = await storeOrder("/orders", order, [
+      "/press/orders",
+      "/press/orders/production",
+    ]);
     if (feedback.success) setStep(1);
     console.log(feedback);
   };
@@ -59,7 +62,9 @@ function AddPressOrder({ shapes }) {
             />
           )}
           {step === 3 && (
-            <OrderCounts props={{ storeOrderHandler,  setSelectedShapes, selectedShapes }} />
+            <OrderCounts
+              props={{ storeOrderHandler, setSelectedShapes, selectedShapes }}
+            />
           )}
         </div>
       )}

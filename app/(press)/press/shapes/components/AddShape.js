@@ -1,6 +1,6 @@
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_action_keys from "@/app/utils/filter_action_keys";
-import createShape from "@/app/actions/createShape";
+import storeShape from "@/app/actions/postAction";
 import Button from "../../../../components/Button";
 
 const shapeKeys = [
@@ -22,7 +22,10 @@ function AddShape() {
         action={async (formData) => {
           "use server";
           const inputs = filter_action_keys(capture_form_values(formData));
-          const feedback = await createShape(inputs);
+          const feedback = await storeShape("/shapes", inputs, [
+            "/press/shapes",
+            "/press/orders",
+          ]);
           console.log(feedback);
         }}
       >

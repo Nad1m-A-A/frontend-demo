@@ -1,10 +1,8 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import updateRelatedOrders from "./updateRelatedOrders";
 
-export default async (inputs, id, shapeName) => {
+export default async (inputs, id) => {
   try {
-    await updateRelatedOrders(inputs, shapeName);
     const sendShape = await fetch(`http://localhost:5000/shapes/${id}`, {
       method: "PATCH",
       body: JSON.stringify(inputs),

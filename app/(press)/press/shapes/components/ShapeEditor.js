@@ -1,7 +1,8 @@
-import editShape from "@/app/actions/editShape";
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
 import filter_action_keys from "@/app/utils/filter_action_keys";
+import editShape from "@/app/actions/editShape";
+import updateRelatedOrders from "@/app/actions/updateRelatedOrders";
 import DeleteShape from "../components/DeleteShape";
 import Button from "@/app/components/Button";
 function ShapeEditor({ shape, shapeId }) {
@@ -17,6 +18,7 @@ function ShapeEditor({ shape, shapeId }) {
           );
           if (JSON.stringify(inputs) === "{}") return;
           const feedback = await editShape(inputs, shapeId, shape.name);
+          await updateRelatedOrders(inputs, shape.name);
           console.log(feedback);
         }}
       >
