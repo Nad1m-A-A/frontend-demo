@@ -1,7 +1,7 @@
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
 import filter_action_keys from "@/app/utils/filter_action_keys";
-import editShape from "@/app/actions/editShape";
+import httpRequest from "@/app/actions/httpRequest";
 import updateRelatedOrders from "@/app/actions/updateRelatedOrders";
 import DeleteShape from "../components/DeleteShape";
 import Button from "@/app/components/Button";
@@ -17,8 +17,18 @@ function ShapeEditor({ shape, shapeId }) {
             filter_empty_inputs(capture_form_values(formData))
           );
           if (JSON.stringify(inputs) === "{}") return;
-          const feedback = await editShape(inputs, shapeId, shape.name);
-          await updateRelatedOrders(inputs, shape.name);
+          const [feedback] = await httpRequest(
+            [`http://localhost:5000/shapes/${shapeId}`],
+            "PATCH",
+            [
+              "/press/shapes",
+              `/press/shapes/${shapeId}`,
+              "/press/orders",
+              "/press/orders/production",
+            ],
+            inputs
+          );
+          updateRelatedOrders(inputs, shape.name);
           console.log(feedback);
         }}
       >

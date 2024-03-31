@@ -1,38 +1,49 @@
 "use server";
 import replace_object_key from "../utils/replace_object_key";
-import editOrder from "./editOrder";
-import updateProduction from "./updateProduction";
+import httpRequest from "./httpRequest";
 export default async (inputs, shapeName) => {
   try {
-    const orderResponse = await fetch("http://localhost:5000/orders");
-    const orders = await orderResponse.json();
+    const [orders] = await httpRequest(["http://localhost:5000/orders"]);
     const relatedOrders = orders.filter(
       (order) => order.details[shapeName] !== undefined
     );
 
-    await Promise.all(
       relatedOrders.map(async (order) => {
-        const newDetails = replace_object_key(
+        const updatedDetails = replace_object_key(
           order.details,
           shapeName,
           inputs.name
         );
-        const newProduction = replace_object_key(
+        const updatedProduction = replace_object_key(
           order.production,
           shapeName,
           inputs.name
         );
 
-        const orderDetailsFeedback = await editOrder(newDetails, order._id);
-        const orderProductionFeedback = await updateProduction(
-          newProduction,
-          order._id
+        const [orderDetailsFeedback] = await httpRequest(
+          [`http://localhost:5000/orders/${order._id}`],
+          "PATCH",
+          [
+            "/press/orders",
+            `/press/orders/${order._id}`,
+            "/press/orders/production",
+          ],
+          updatedDetails
+        );
+        const [orderProductionFeedback] = await httpRequest(
+          [`http://localhost:5000/orders/${order._id}/production`],
+          "PATCH",
+          [
+            "/press/orders",
+            `/press/orders/${order._id}`,
+            "/press/orders/production",
+          ],
+          updatedProduction
         );
 
         console.log(orderDetailsFeedback);
         console.log(orderProductionFeedback);
       })
-    );
   } catch (error) {
     console.error({ message: error.message });
     throw error;

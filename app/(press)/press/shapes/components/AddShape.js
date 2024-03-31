@@ -1,7 +1,7 @@
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_action_keys from "@/app/utils/filter_action_keys";
-import storeShape from "@/app/actions/postAction";
-import Button from "../../../../components/Button";
+import httpRequest from "@/app/actions/httpRequest";
+import Button from "@/app/components/Button";
 
 const shapeKeys = [
   { key: "name", type: "text" },
@@ -13,6 +13,7 @@ const shapeKeys = [
 ];
 
 function AddShape() {
+  let feedback;
   return (
     <div className="flex flex-col items-center mb-8">
       <h3>Add Shape</h3>
@@ -22,10 +23,12 @@ function AddShape() {
         action={async (formData) => {
           "use server";
           const inputs = filter_action_keys(capture_form_values(formData));
-          const feedback = await storeShape("/shapes", inputs, [
-            "/press/shapes",
-            "/press/orders",
-          ]);
+          const [feedback] = await httpRequest(
+            ["http://localhost:5000/shapes"],
+            "POST",
+            ["/press/shapes", "/press/orders"],
+            inputs
+          );
           console.log(feedback);
         }}
       >
@@ -51,6 +54,7 @@ function AddShape() {
           RESET
         </button>
       </form>
+      <div>{feedback?.message}</div>
     </div>
   );
 }

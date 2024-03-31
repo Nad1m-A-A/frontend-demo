@@ -1,5 +1,5 @@
 "use client";
-import deleteShape from "@/app/actions/deleteShape";
+import httpRequest from "@/app/actions/httpRequest";
 import { useRouter } from "next/navigation";
 
 function DeleteShape({ shapeId }) {
@@ -8,7 +8,12 @@ function DeleteShape({ shapeId }) {
   const deleteShapeHandler = async () => {
     const deleteConfirmation = window.confirm("Click (OK) to delete shape");
     if (!deleteConfirmation) return;
-    const feedback = await deleteShape(shapeId);
+    const [feedback] = await httpRequest(
+      [`http://localhost:5000/shapes/${shapeId}`],
+      "DELETE",
+      ["/press/shapes"]
+    );
+    console.log(feedback);
     router.replace("/press/shapes");
   };
   return (

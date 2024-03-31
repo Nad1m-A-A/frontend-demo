@@ -1,11 +1,15 @@
 "use client";
-import deleteOrder from "@/app/actions/deleteOrder";
+import httpRequest from "@/app/actions/httpRequest";
 
 function DeleteOrder({ orderId }) {
   const deleteOrderHandler = async () => {
     const deleteConfirmation = window.confirm("Click (OK) to confirm.");
     if (!deleteConfirmation) return;
-    const feedback = await deleteOrder(orderId);
+    const [feedback] = await httpRequest(
+      [`http://localhost:5000/orders/${orderId}`],
+      "DELETE",
+      ["/press/orders", "/press/orders/production"]
+    );
     console.log(feedback);
   };
   return (

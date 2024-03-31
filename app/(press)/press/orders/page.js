@@ -1,8 +1,8 @@
 import OrdersList from "./components/OrdersList";
 import AddPressOrder from "./components/AddPressOrder";
-import getData from "@/app/actions/getData";
+import httpRequest from "@/app/actions/httpRequest";
 async function OrdersPage() {
-  const [orders, shapes] = await getData([
+  const [orders, shapes] = await httpRequest([
     "http://localhost:5000/orders",
     "http://localhost:5000/shapes",
   ]);

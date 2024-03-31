@@ -1,4 +1,4 @@
-import updateProduction from "@/app/actions/updateProduction";
+import httpRequest from "@/app/actions/httpRequest";
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_action_keys from "@/app/utils/filter_action_keys";
 import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
@@ -25,7 +25,16 @@ function OrderProduction({ order: { _id, name, details, production } }) {
               ? inputs[key] + production[key]
               : production[key];
           });
-          const feedback = await updateProduction(preservedProduction, _id);
+          const [feedback] = await httpRequest(
+            [`http://localhost:5000/orders/${_id}/production`],
+            "PATCH",
+            [
+              "/press/orders",
+              "/press/orders/production",
+              `/press/orders/${_id}`,
+            ],
+            preservedProduction
+          );
           console.log(feedback);
         }}
       >
@@ -50,7 +59,7 @@ function OrderProduction({ order: { _id, name, details, production } }) {
             />
           </div>
         ))}
-        <Button text={"Save Changes"}/>
+        <Button text={"Save Changes"} />
       </form>
     </>
   );

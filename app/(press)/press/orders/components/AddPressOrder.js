@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import capture_form_values from "@/app/utils/capture_form_values";
-import storeOrder from "@/app/actions/postAction";
+import httpRequest from "@/app/actions/httpRequest";
 import OrderName from "./OrderName";
 import OrderShapes from "./OrderShapes";
 import OrderCounts from "./OrderCounts";
@@ -28,12 +28,12 @@ function AddPressOrder({ shapes }) {
   };
 
   const storeOrderHandler = async (formValues) => {
-    const inputs = capture_form_values(formValues);
-    const order = {
+    const inputValues = capture_form_values(formValues);
+    const inputs = {
       name: orderName || undefined,
-      details: inputs,
+      details: inputValues,
       production: Object.fromEntries(
-        Object.keys(inputs).map((key) => [key, 0])
+        Object.keys(inputValues).map((key) => [key, 0])
       ),
     };
 
@@ -41,10 +41,12 @@ function AddPressOrder({ shapes }) {
     setSelectedShapes([]);
     setOrderName("");
 
-    const feedback = await storeOrder("/orders", order, [
-      "/press/orders",
-      "/press/orders/production",
-    ]);
+    const [feedback] = await httpRequest(
+      ["http://localhost:5000/orders"],
+      "POST",
+      ["/press/orders", "/press/orders/production"],
+      [inputs]
+    );
     if (feedback.success) setStep(1);
     console.log(feedback);
   };
