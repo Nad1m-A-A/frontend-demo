@@ -1,6 +1,6 @@
 import DeleteOrder from "../components/DeleteOrder";
 import Link from "next/link";
-import Demand from "./Demand";
+import OrderDemand from "./OrderDemand";
 
 async function OrdersList({ orders }) {
   return (
@@ -19,7 +19,7 @@ async function OrdersList({ orders }) {
               ))}
             </div>
             <div id="order_demand">
-              <Demand orderProduction={production} orderDetails={details}/>
+              <OrderDemand orderProduction={production} orderDetails={details}/>
             </div>
           </ul>
           <DeleteOrder orderId={_id} />

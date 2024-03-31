@@ -8,42 +8,35 @@ export default async (inputs, shapeName) => {
       (order) => order.details[shapeName] !== undefined
     );
 
-      relatedOrders.map(async (order) => {
-        const updatedDetails = replace_object_key(
-          order.details,
-          shapeName,
-          inputs.name
-        );
-        const updatedProduction = replace_object_key(
-          order.production,
-          shapeName,
-          inputs.name
-        );
+    relatedOrders.map(async (order) => {
+      const updatedDetails = replace_object_key(
+        order.details,
+        shapeName,
+        inputs.name
+      );
+      const updatedProduction = replace_object_key(
+        order.production,
+        shapeName,
+        inputs.name
+      );
 
-        const [orderDetailsFeedback] = await httpRequest(
-          [`http://localhost:5000/orders/${order._id}`],
-          "PATCH",
-          [
-            "/press/orders",
-            `/press/orders/${order._id}`,
-            "/press/orders/production",
-          ],
-          updatedDetails
-        );
-        const [orderProductionFeedback] = await httpRequest(
-          [`http://localhost:5000/orders/${order._id}/production`],
-          "PATCH",
-          [
-            "/press/orders",
-            `/press/orders/${order._id}`,
-            "/press/orders/production",
-          ],
-          updatedProduction
-        );
+      const [orderDetailsFeedback, orderProductionFeedback] = await httpRequest(
+        [
+          `http://localhost:5000/orders/${order._id}`,
+          `http://localhost:5000/orders/${order._id}/production`,
+        ],
+        "PATCH",
+        [
+          "/press/orders",
+          `/press/orders/${order._id}`,
+          "/press/orders/production",
+        ],
+        [updatedDetails, updatedProduction]
+      );
 
-        console.log(orderDetailsFeedback);
-        console.log(orderProductionFeedback);
-      })
+      console.log(orderDetailsFeedback);
+      console.log(orderProductionFeedback);
+    });
   } catch (error) {
     console.error({ message: error.message });
     throw error;

@@ -27,7 +27,7 @@ function AddShape() {
             ["http://localhost:5000/shapes"],
             "POST",
             ["/press/shapes", "/press/orders"],
-            inputs
+            [inputs]
           );
           console.log(feedback);
         }}

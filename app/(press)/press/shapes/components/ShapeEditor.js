@@ -26,7 +26,7 @@ function ShapeEditor({ shape, shapeId }) {
               "/press/orders",
               "/press/orders/production",
             ],
-            inputs
+            [inputs]
           );
           updateRelatedOrders(inputs, shape.name);
           console.log(feedback);

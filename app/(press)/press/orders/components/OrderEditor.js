@@ -18,7 +18,7 @@ function OrderEditor({ order }) {
             `/press/orders/${order._id}`,
             "/press/orders/production",
           ],
-          inputs
+          [inputs]
         );
         console.log(feedback);
       }}

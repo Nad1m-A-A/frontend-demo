@@ -1,9 +1,9 @@
+import httpRequest from "@/app/actions/httpRequest";
 import AddShape from "./components/AddShape";
 import ShapeList from "./components/ShapeList";
 
 async function ShapesPage() {
-  const response = await fetch("http://localhost:5000/shapes");
-  const shapes = await response.json();
+  const [shapes] = await httpRequest(["http://localhost:5000/shapes"]);
 
   return (
     <div className="page">

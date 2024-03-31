@@ -15,16 +15,19 @@ function OrderProduction({ order: { _id, name, details, production } }) {
       <form
         action={async (formData) => {
           "use server";
+          
           const inputs = filter_action_keys(
             filter_empty_inputs(capture_form_values(formData))
           );
           if (JSON.stringify(inputs) === "{}") return;
+          
           const preservedProduction = {};
           Object.keys(production).map((key) => {
             preservedProduction[key] = inputs[key]
               ? inputs[key] + production[key]
               : production[key];
           });
+
           const [feedback] = await httpRequest(
             [`http://localhost:5000/orders/${_id}/production`],
             "PATCH",
@@ -33,7 +36,7 @@ function OrderProduction({ order: { _id, name, details, production } }) {
               "/press/orders/production",
               `/press/orders/${_id}`,
             ],
-            preservedProduction
+            [preservedProduction]
           );
           console.log(feedback);
         }}

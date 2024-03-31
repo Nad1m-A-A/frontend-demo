@@ -6,18 +6,17 @@ export default async function httpRequest(
   endpoints,
   method = "GET",
   paths = [],
-  inputs = {}
+  bodies = []
 ) {
   try {
-    const options = {
-      method,
-      headers: { "Content-Type": "application/json" },
-    };
-    if (method !== "GET" && inputs) {
-      options.body = JSON.stringify(inputs);
-    }
     const responses = await Promise.all(
-      endpoints.map((endpoint) => fetch(endpoint, options))
+      endpoints.map((endpoint, index) =>
+        fetch(endpoint, {
+          body: JSON.stringify(bodies[index]),
+          method,
+          headers: { "Content-Type": "application/json" },
+        })
+      )
     );
 
     paths.forEach((path) => {

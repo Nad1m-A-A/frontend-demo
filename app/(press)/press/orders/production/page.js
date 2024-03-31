@@ -1,8 +1,10 @@
+import httpRequest from "@/app/actions/httpRequest";
 import OrdersProductionList from "../components/OrdersProductionList";
 
 async function ProductionPage() {
-  const OrdersResponse = await fetch("http://localhost:5000/orders");
-  const orders = await OrdersResponse.json();
+  const [orders] = await httpRequest([
+    "http://localhost:5000/orders",
+  ]);
   return (
     <div className="page">
       <h3>Production</h3>

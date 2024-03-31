@@ -1,14 +1,15 @@
+import httpRequest from "@/app/actions/httpRequest";
 import compute_press_demand from "@/app/utils/compute_press_demand";
 async function ProductionDemand({ orderProduction, orderDetails, index }) {
-  const alloyResponse = await fetch("http://localhost:5000/alloy");
-  const { details: defaultAlloyDetails } = await alloyResponse.json();
-  const shapesResponse = await fetch("http://localhost:5000/shapes");
-  const shapes = await shapesResponse.json();
+  const [alloy, shapes] = await httpRequest([
+    "http://localhost:5000/alloy",
+    "http://localhost:5000/shapes",
+  ]);
 
   const demand = compute_press_demand(
     orderProduction,
     orderDetails,
-    defaultAlloyDetails,
+    alloy.details,
     shapes
   );
   return (

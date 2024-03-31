@@ -1,10 +1,10 @@
+import httpRequest from "@/app/actions/httpRequest";
 import OrderEditor from "../components/OrderEditor";
 
 async function OrderPage({ params }) {
-  const OrderResponse = await fetch(
+  const [order] = await httpRequest([
     `http://localhost:5000/orders/${params.orderId}`
-  );
-  const order = await OrderResponse.json();
+  ]);
   return (
     <div className="page">
       <h3>Edit Order</h3>
