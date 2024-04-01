@@ -1,7 +1,7 @@
-import OrdersPage from "./orders/page";
-
 async function PressPage() {
-  return <OrdersPage />;
+  return <div className="page">
+    <h2>Press Page</h2>
+  </div>;
 }
 
 export default PressPage;
