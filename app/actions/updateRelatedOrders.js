@@ -3,7 +3,7 @@ import replace_object_key from "../utils/replace_object_key";
 import httpRequest from "./httpRequest";
 const ENDPOINT = process.env.ENDPOINT;
 
-export default async (inputs, shapeName) => {
+export default async function updateRelatedOrders(inputs, shapeName) {
   try {
     const [orders] = await httpRequest([`${ENDPOINT}orders`]);
     const relatedOrders = orders.filter(
@@ -43,4 +43,4 @@ export default async (inputs, shapeName) => {
     console.error({ message: error.message });
     throw error;
   }
-};
+}
