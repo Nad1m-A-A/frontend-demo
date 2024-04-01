@@ -31,7 +31,7 @@ function OrderProduction({ order: { _id, name, details, production } }) {
         const [feedback] = await httpRequest(
           [`${ENDPOINT}orders/${_id}/production`],
           "PATCH",
-          ["/press/orders", "/press/orders/production", `/press/orders/${_id}`],
+          ["/press/orders", "/press/orders/production"],
           [preservedProduction]
         );
         console.log(feedback);

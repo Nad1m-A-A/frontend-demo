@@ -12,7 +12,7 @@ function DeleteShape({ shapeId }) {
     const [feedback] = await httpRequest(
       [`https://k6-navy.vercel.app/shapes/${shapeId}`],
       "DELETE",
-      ["/press/shapes"]
+      ["/press/shapes", "/press/orders"]
     );
     console.log(feedback);
     router.replace("/press/shapes");
