@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         router.replace("/login");
       }
     }
-  }, []);
+  }, [router]);
   const isLogin = pathname === "/login";
 
   return (
