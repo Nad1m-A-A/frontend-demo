@@ -6,7 +6,7 @@ function DeleteOrder({ orderId }) {
     const deleteConfirmation = window.confirm("Click (OK) to confirm.");
     if (!deleteConfirmation) return;
     const [feedback] = await httpRequest(
-      [`http://localhost:5000/orders/${orderId}`],
+      [`https://k6-navy.vercel.app/orders/${orderId}`],
       "DELETE",
       ["/press/orders", "/press/orders/production"]
     );
@@ -14,9 +14,7 @@ function DeleteOrder({ orderId }) {
   };
   return (
     <form id="delete_shape" action={deleteOrderHandler}>
-      <button className="delete_button">
-        Delete Order
-      </button>
+      <button className="delete_button">Delete Order</button>
     </form>
   );
 }

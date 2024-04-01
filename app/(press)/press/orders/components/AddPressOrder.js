@@ -42,7 +42,7 @@ function AddPressOrder({ shapes }) {
     setOrderName("");
 
     const [feedback] = await httpRequest(
-      ["http://localhost:5000/orders"],
+      ["https://k6-navy.vercel.app/orders"],
       "POST",
       ["/press/orders", "/press/orders/production"],
       [inputs]

@@ -2,15 +2,16 @@ import OrdersList from "./components/OrdersList";
 import AddPressOrder from "./components/AddPressOrder";
 import httpRequest from "@/app/actions/httpRequest";
 async function OrdersPage() {
+  const ENDPOINT = process.env.ENDPOINT;
   const [orders, shapes] = await httpRequest([
-    "http://localhost:5000/orders",
-    "http://localhost:5000/shapes",
+    `${ENDPOINT}orders`,
+    `${ENDPOINT}shapes`,
   ]);
 
   return (
     <div className="page">
       <h2>Orders</h2>
-      <div>
+      <div className="list">
         <OrdersList orders={orders} />
         <AddPressOrder shapes={shapes} />
       </div>

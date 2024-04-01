@@ -13,7 +13,7 @@ const Login = () => {
     setLoading(true);
     const password = capture_form_values(formValues);
     const [feedback] = await httpRequest(
-      ["http://localhost:5000/pass-code/validate"],
+      ["https://k6-navy.vercel.app/pass-code/validate"],
       "POST",
       [],
       [password]

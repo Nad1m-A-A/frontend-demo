@@ -2,17 +2,17 @@ import httpRequest from "@/app/actions/httpRequest";
 import Button from "@/app/components/Button";
 import capture_form_values from "@/app/utils/capture_form_values";
 import filter_from_values from "@/app/utils/filter_action_keys";
-
+const ENDPOINT = process.env.ENDPOINT;
 function OrderEditor({ order }) {
   return (
     <form
       id="order_editor"
-      className="flex flex-col gap-2 w-fit m-auto"
+      className="flex flex-col gap-2 w-fit"
       action={async (formData) => {
         "use server";
         const inputs = filter_from_values(capture_form_values(formData));
         const [feedback] = await httpRequest(
-          [`http://localhost:5000/orders/${order._id}`],
+          [`${ENDPOINT}orders/${order._id}`],
           "PATCH",
           [
             "/press/orders",

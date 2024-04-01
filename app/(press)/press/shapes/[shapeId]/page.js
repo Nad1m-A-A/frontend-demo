@@ -1,9 +1,10 @@
 import httpRequest from "@/app/actions/httpRequest";
 import ShapeEditor from "../components/ShapeEditor";
+const ENDPOINT = process.env.ENDPOINT;
 
 async function ShapePage({ params: { shapeId } }) {
   const [{ _id, __v, ...shape }] = await httpRequest([
-    `http://localhost:5000/shapes/${shapeId}`,
+    `${ENDPOINT}shapes/${shapeId}`,
   ]);
   return (
     <div id="shape" className="page">

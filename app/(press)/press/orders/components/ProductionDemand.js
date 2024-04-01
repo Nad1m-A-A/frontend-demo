@@ -1,9 +1,10 @@
 import httpRequest from "@/app/actions/httpRequest";
 import compute_press_demand from "@/app/utils/compute_press_demand";
+const ENDPOINT = process.env.ENDPOINT;
 async function ProductionDemand({ orderProduction, orderDetails, index }) {
   const [alloy, shapes] = await httpRequest([
-    "http://localhost:5000/alloy",
-    "http://localhost:5000/shapes",
+    `${ENDPOINT}alloy`,
+    `${ENDPOINT}shapes`,
   ]);
 
   const demand = compute_press_demand(

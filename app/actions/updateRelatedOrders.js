@@ -1,9 +1,11 @@
 "use server";
 import replace_object_key from "../utils/replace_object_key";
 import httpRequest from "./httpRequest";
+const ENDPOINT = process.env.ENDPOINT;
+
 export default async (inputs, shapeName) => {
   try {
-    const [orders] = await httpRequest(["http://localhost:5000/orders"]);
+    const [orders] = await httpRequest([`${ENDPOINT}orders`]);
     const relatedOrders = orders.filter(
       (order) => order.details[shapeName] !== undefined
     );
@@ -22,8 +24,8 @@ export default async (inputs, shapeName) => {
 
       const [orderDetailsFeedback, orderProductionFeedback] = await httpRequest(
         [
-          `http://localhost:5000/orders/${order._id}`,
-          `http://localhost:5000/orders/${order._id}/production`,
+          `${ENDPOINT}orders/${order._id}`,
+          `${ENDPOINT}orders/${order._id}/production`,
         ],
         "PATCH",
         [

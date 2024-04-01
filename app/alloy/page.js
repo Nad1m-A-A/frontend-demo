@@ -1,5 +1,7 @@
+const ENDPOINT = process.env.ENDPOINT;
+
 async function AlloyPage() {
-  const alloyResponse = await fetch("http://localhost:5000/alloy");
+  const alloyResponse = await fetch(`${ENDPOINT}alloy`);
   const { name, details } = await alloyResponse.json();
   return (
     <div className="page">

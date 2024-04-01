@@ -2,11 +2,11 @@ import OrderProduction from "./OrderProduction";
 
 function OrdersProductionList({ orders }) {
   return (
-    <div className="w-full flex flex-col gap-10" id="orders_production_list">
+    <div className="list" id="orders_production_list">
       {orders.reverse().map((order, index) => (
         <OrderProduction order={order} key={index} />
       ))}
-      {orders.length === 0 && <div>No orders available</div>}
+      {orders.length === 0 && <div className="text-center">No orders available</div>}
     </div>
   );
 }

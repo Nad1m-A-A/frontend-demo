@@ -30,16 +30,16 @@ h3 {
 }
 
 .page {
+  height: 100vh;
   padding: 3rem 1.5rem;
   margin: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
   @apply md:w-1/2;
 }
 
-.page > div {
+.list {
   @apply w-full flex flex-col gap-10;
 }
 

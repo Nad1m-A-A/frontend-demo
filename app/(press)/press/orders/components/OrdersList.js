@@ -1,12 +1,11 @@
 import DeleteOrder from "../components/DeleteOrder";
 import Link from "next/link";
 import OrderDemand from "./OrderDemand";
-
 async function OrdersList({ orders }) {
   return (
     <div
       id="orders_list"
-      className="flex flex-col gap-10"
+      className="list"
     >
       {orders.reverse().map(({ _id, name, details, production }, index) => (
         <div
@@ -35,13 +34,13 @@ async function OrdersList({ orders }) {
           <DeleteOrder orderId={_id} />
           <Link
             className="p-0 bg-transparent hover:bg-transparent"
-            href={`http://localhost:3000/press/orders/${_id}`}
+            href={`/press/orders/${_id}`}
           >
             <button>Edit</button>
           </Link>
         </div>
       ))}
-      {orders.length === 0 && <div>No orders available</div>}
+      {orders.length === 0 && <div className="text-center">No orders available</div>}
     </div>
   );
 }

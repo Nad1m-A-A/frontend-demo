@@ -1,5 +1,6 @@
 "use client";
 import httpRequest from "@/app/actions/httpRequest";
+import Button from "@/app/components/Button";
 import { useRouter } from "next/navigation";
 
 function DeleteShape({ shapeId }) {
@@ -9,7 +10,7 @@ function DeleteShape({ shapeId }) {
     const deleteConfirmation = window.confirm("Click (OK) to delete shape");
     if (!deleteConfirmation) return;
     const [feedback] = await httpRequest(
-      [`http://localhost:5000/shapes/${shapeId}`],
+      [`https://k6-navy.vercel.app/shapes/${shapeId}`],
       "DELETE",
       ["/press/shapes"]
     );
@@ -17,11 +18,9 @@ function DeleteShape({ shapeId }) {
     router.replace("/press/shapes");
   };
   return (
-    <form id="delete_shape" action={deleteShapeHandler}>
-      <button className="delete_button">
+      <button className="delete_button" onClick={deleteShapeHandler}>
         Delete
       </button>
-    </form>
   );
 }
 

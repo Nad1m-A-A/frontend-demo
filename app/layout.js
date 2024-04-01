@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     if (typeof window !== undefined) {
       if (!localStorage.getItem("k6")) {
-        router.replace("http://localhost:3000/login");
+        router.replace("/login");
       }
     }
   }, []);

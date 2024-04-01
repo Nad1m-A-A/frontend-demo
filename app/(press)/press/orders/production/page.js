@@ -1,9 +1,9 @@
 import httpRequest from "@/app/actions/httpRequest";
 import OrdersProductionList from "../components/OrdersProductionList";
-
+const ENDPOINT = process.env.ENDPOINT;
 async function ProductionPage() {
   const [orders] = await httpRequest([
-    "http://localhost:5000/orders",
+    `${ENDPOINT}orders`,
   ]);
   return (
     <div className="page">
