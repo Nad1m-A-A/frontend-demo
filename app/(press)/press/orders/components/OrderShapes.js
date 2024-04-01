@@ -3,26 +3,24 @@ function OrderShapes({
   setStep,
 }) {
   return (
-    <div id="order_shapes" className="max-w-md mx-auto">
-      <h4 className="m-0 text-lg font-semibold">Choose Shapes</h4>
-      {availableShapes.map((shape, index) => (
+    <div id="order_shapes">
+      <h4>Choose Shapes</h4>
+      <div className="flex gap-2 flex-wrap">
+        {availableShapes.map((shape, index) => (
+          <button key={index} onClick={getOrderShape} className="link">
+            {shape.name}
+          </button>
+        ))}
         <button
-          key={index}
-          onClick={getOrderShape}
-          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded mt-2"
+          disabled={!selectedShapes.length}
+          onClick={() => setStep(3)}
+          className={`${
+            !selectedShapes.length ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
-          {shape.name}
+          Next
         </button>
-      ))}
-      <button
-        disabled={!selectedShapes.length}
-        onClick={() => setStep(3)}
-        className={`bg-blue-600 text-white px-4 py-2 rounded mt-4 ${
-          !selectedShapes.length ? "opacity-50 cursor-not-allowed" : ""
-        }`}
-      >
-        Next
-      </button>
+      </div>
     </div>
   );
 }

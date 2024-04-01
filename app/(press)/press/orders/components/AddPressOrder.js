@@ -54,7 +54,7 @@ function AddPressOrder({ shapes }) {
   return (
     <>
       {shapes.length !== 0 && (
-        <div id="order_creator" className="max-w-md mx-auto">
+        <div id="order_creator" className="self-start">
           <h3>New Order</h3>
           {step === 1 && <OrderName getOrderName={getOrderName} />}
           {step === 2 && (

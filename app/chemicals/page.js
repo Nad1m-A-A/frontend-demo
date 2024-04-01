@@ -5,7 +5,7 @@ async function ChemicalsPage() {
     };
     const chemicals = await getChemicals();
     return (
-      <div>
+      <div className="page">
         <h1>Chemicals Page</h1>  
         {chemicals && chemicals.map((chemical, index) => {
           return <div key={index}>{chemical.name}</div>;

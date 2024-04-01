@@ -11,8 +11,8 @@ function OrderProduction({ order: { _id, name, details, production } }) {
   );
   const allComplete = productionStatus.every((status) => status === true);
   return (
-    <>
       <form
+      className="card"
         action={async (formData) => {
           "use server";
           
@@ -41,14 +41,14 @@ function OrderProduction({ order: { _id, name, details, production } }) {
           console.log(feedback);
         }}
       >
-        <h3>{name}</h3>
+        <h4>{name}</h4>
         {Object.entries(production).map(([key, value], index) => (
-          <div className="flex gap-5" key={index}>
-            <label>
+          <div className=" flex items-center justify-between gap-2" key={index}>
+            <label className="w-2/3">
               {key}:
               <input
+              className="w-14"
                 type="number"
-                step="0.5"
                 name={key}
                 placeholder={`${value} ${
                   productionStatus[index] ? "(complete)" : ""
@@ -62,9 +62,8 @@ function OrderProduction({ order: { _id, name, details, production } }) {
             />
           </div>
         ))}
-        <Button text={"Save Changes"} />
+        <Button className="finish_button" text="Save" />
       </form>
-    </>
   );
 }
 

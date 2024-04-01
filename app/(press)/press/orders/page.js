@@ -9,9 +9,11 @@ async function OrdersPage() {
 
   return (
     <div className="page">
-      <h3>Orders</h3>
-      <OrdersList orders={orders} />
-      <AddPressOrder shapes={shapes} />
+      <h2>Orders</h2>
+      <div>
+        <OrdersList orders={orders} />
+        <AddPressOrder shapes={shapes} />
+      </div>
     </div>
   );
 }

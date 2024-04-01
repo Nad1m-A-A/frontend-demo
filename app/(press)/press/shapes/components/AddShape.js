@@ -13,13 +13,10 @@ const shapeKeys = [
 ];
 
 function AddShape() {
-  let feedback;
   return (
-    <div className="flex flex-col items-center mb-8">
-      <h3>Add Shape</h3>
       <form
         id="add_shape"
-        className="flex flex-col items-center"
+        className="flex flex-col gap-2 w-fit m-auto"
         action={async (formData) => {
           "use server";
           const inputs = filter_action_keys(capture_form_values(formData));
@@ -32,6 +29,8 @@ function AddShape() {
           console.log(feedback);
         }}
       >
+      <h3 className="text-center">Add Shape</h3>
+
         {shapeKeys.map(({ key, type }, index) => (
           <input
             key={index}
@@ -40,22 +39,15 @@ function AddShape() {
             step="0.01"
             placeholder={key}
             required
-            className="mb-2 px-4 py-2 border border-gray-300 rounded"
           />
         ))}
-        <Button
-          className="bg-blue-600 text-white shadow-xl px-4 py-2 rounded border-0"
-          text="Add"
-        />
-        <button
-          type="reset"
-          className="bg-green-600 text-white shadow-xl px-4 py-2 rounded border-0"
-        >
-          RESET
-        </button>
+        <div className="flex gap-2 flex-col items-end">
+          <Button text="Add" />
+          <button type="reset" className="bg-gray-500">
+            Reset
+          </button>
+        </div>
       </form>
-      <div>{feedback?.message}</div>
-    </div>
   );
 }
 

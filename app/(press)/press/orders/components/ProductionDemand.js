@@ -13,17 +13,22 @@ async function ProductionDemand({ orderProduction, orderDetails, index }) {
     shapes
   );
   return (
-    <>
-      {Object.entries(demand[index]).map(([key, value]) => (
-        <div key={index}>
-          {key === "weight"
-            ? ""
-            : key === "length"
-            ? `${value}cm`
-            : `${value}ps`}
+    <div className="flex">
+      {Object.entries(demand[index]).map(([key, value], itemIndex) => (
+        <div className="min-w-fit" key={itemIndex}>
+          {value > 0 && (
+            <span>
+              {key === "weight"
+                ? ""
+                : key === "length"
+                ? `${value}cm /`
+                : `${value}ps`}
+            </span>
+          )}
+          {key === "length" && value <= 0 && <h5>Done</h5>}
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

@@ -7,6 +7,7 @@ function OrderEditor({ order }) {
   return (
     <form
       id="order_editor"
+      className="flex flex-col gap-2 w-fit m-auto"
       action={async (formData) => {
         "use server";
         const inputs = filter_from_values(capture_form_values(formData));
@@ -24,7 +25,7 @@ function OrderEditor({ order }) {
       }}
     >
       <label>
-        name
+        name:
         <input
           required
           name="name"
@@ -33,19 +34,21 @@ function OrderEditor({ order }) {
         />
       </label>
       {Object.entries(order.details).map(([key, value], index) => (
-        <div key={index}>
-          <label>
-            {key}
-            <input
-              required
-              name={key}
-              defaultValue={value}
-              placeholder={value}
-            />
-          </label>
-        </div>
+        <label key={index}>
+          {key}:
+          <input
+            type="number"
+            step={10}
+            required
+            name={key}
+            defaultValue={value}
+            placeholder={value}
+          />
+        </label>
       ))}
-      <Button text="Save" />
+      <div className="flex gap-2 flex-col items-end">
+        <Button className="finish_button" text="Save" />
+      </div>
     </form>
   );
 }

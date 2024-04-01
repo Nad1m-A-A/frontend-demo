@@ -14,7 +14,7 @@ function DeleteOrder({ orderId }) {
   };
   return (
     <form id="delete_shape" action={deleteOrderHandler}>
-      <button className="bg-red-600 border-0 shadow-xl text-white px-4 py-2 rounded">
+      <button className="delete_button">
         Delete Order
       </button>
     </form>

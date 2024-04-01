@@ -1,10 +1,10 @@
 import Link from "next/link";
 function ShapeList({ shapes }) {
   return (
-    <div id="shapes" className="flex max-w-5xl flex-wrap gap-4 m-auto">
+    <div id="shapes" className="flex justify-center flex-wrap gap-4">
       {shapes.map(({ name, _id }, index) => (
         <Link
-          className="no-underline bg-gray-200 text-black hover:bg-gray-300 px-4 py-2 rounded cursor-pointer"
+          className="link no-underline "
           href={`/press/shapes/${_id}`}
           key={index}
         >

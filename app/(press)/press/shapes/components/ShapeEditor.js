@@ -7,53 +7,41 @@ import DeleteShape from "../components/DeleteShape";
 import Button from "@/app/components/Button";
 function ShapeEditor({ shape, shapeId }) {
   return (
-    <div>
-      <form
-        id="shape_editer"
-        className="flex flex-col"
-        action={async (formData) => {
-          "use server";
-          const inputs = filter_action_keys(
-            filter_empty_inputs(capture_form_values(formData))
-          );
-          if (JSON.stringify(inputs) === "{}") return;
-          const [feedback] = await httpRequest(
-            [`http://localhost:5000/shapes/${shapeId}`],
-            "PATCH",
-            [
-              "/press/shapes",
-              `/press/shapes/${shapeId}`,
-              "/press/orders",
-              "/press/orders/production",
-            ],
-            [inputs]
-          );
-          updateRelatedOrders(inputs, shape.name);
-          console.log(feedback);
-        }}
-      >
-        <h3>Edit Shape</h3>
-        {Object.entries(shape).map(([key, value], index) => (
-          <div
-            key={index}
-            className="flex gap-3 pb-2 justify-between items-center"
-          >
-            <label>{key}:</label>
-            <input
-              name={key}
-              placeholder={value}
-              key={key}
-              className="border border-gray-300 rounded px-3 py-2 mt-1"
-            />
-          </div>
-        ))}
-        <Button
-          className="bg-green-600 border-0 shadow-xl text-white px-4 py-2 rounded"
-          text="Save Changes"
-        />
-      </form>
-      <DeleteShape shapeId={shapeId} />
-    </div>
+    <form
+      className="flex flex-col gap-2 w-fit m-auto"
+      id="shape_editor"
+      action={async (formData) => {
+        "use server";
+        const inputs = filter_action_keys(
+          filter_empty_inputs(capture_form_values(formData))
+        );
+        if (JSON.stringify(inputs) === "{}") return;
+        const [feedback] = await httpRequest(
+          [`http://localhost:5000/shapes/${shapeId}`],
+          "PATCH",
+          [
+            "/press/shapes",
+            `/press/shapes/${shapeId}`,
+            "/press/orders",
+            "/press/orders/production",
+          ],
+          [inputs]
+        );
+        updateRelatedOrders(inputs, shape.name);
+        console.log(feedback);
+      }}
+    >
+      {Object.entries(shape).map(([key, value], index) => (
+        <label key={index}>
+          {key}:
+          <input name={key} placeholder={value} key={key} />
+        </label>
+      ))}
+      <div className="flex gap-2 flex-col items-end">
+        <Button className="finish_button" text="Save" />
+        <DeleteShape shapeId={shapeId} />
+      </div>
+    </form>
   );
 }
 

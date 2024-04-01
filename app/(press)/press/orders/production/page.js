@@ -7,7 +7,7 @@ async function ProductionPage() {
   ]);
   return (
     <div className="page">
-      <h3>Production</h3>
+      <h2>Production</h2>
       <OrdersProductionList orders={orders} />
     </div>
   );

@@ -9,13 +9,78 @@
 }
 
 body {
-  background-color: lightgray;
+  background-color: #d3d3d3;
 }
 
 ul {
   list-style: none;
 }
 
+h2 {
+  padding: 1.25rem 0;
+}
+
+h3 {
+  padding-bottom: 0.8rem;
+}
+
+
+.nav {
+  @apply flex justify-center gap-4 flex-wrap pt-5 pb-3;
+}
+
 .page {
-  padding: 1rem 1.5rem;  
+  padding: 3rem 1.5rem;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @apply md:w-1/2;
+}
+
+.page > div {
+  @apply w-full flex flex-col gap-10;
+}
+
+.card {
+  @apply bg-gray-100 py-4 px-8 rounded-sm shadow-sm flex flex-col gap-2;
+}
+
+.link {
+  @apply bg-gray-100 text-black px-4 py-2 rounded-sm cursor-pointer;
+}
+
+.link:hover {
+  @apply bg-gray-200;
+}
+
+button {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+  background-color: rgb(37 99 235);
+}
+
+.delete_button {
+  @apply bg-red-600;
+}
+
+.finish_button {
+  @apply bg-green-600;
+}
+
+.delete_icon {
+  @apply fill-red-600 cursor-pointer;
+}
+
+input {
+  @apply border border-gray-300 rounded px-3 py-2;
+}
+
+label {
+  @apply flex items-center justify-between gap-2 w-full;
 }

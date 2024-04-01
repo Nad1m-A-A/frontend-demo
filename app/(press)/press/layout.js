@@ -16,19 +16,15 @@ export default function PressLayout({ children }) {
     },
   ];
   return (
-    <section className="max-w-5xl mx-auto py-5">
-      <div className="flex justify-center gap-4">
+    <>
+      <div className="nav">
         {pages.map((page, index) => (
-          <Link
-            key={index}
-            href={page.path}
-            className="no-underline bg-gray-200 text-black hover:bg-gray-300 px-4 py-2 rounded cursor-pointer"
-          >
+          <Link key={index} href={page.path} className="link">
             {page.name}
           </Link>
         ))}
       </div>
       {children}
-    </section>
+    </>
   );
 }
