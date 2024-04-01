@@ -1,4 +1,4 @@
-export default filter_empty_inputs = (inputs) => {
+const filter_empty_inputs = (inputs) => {
   return Object.entries(inputs).reduce((acc, [key, value]) => {
     if (value !== "") {
       acc[key] = value;
@@ -6,3 +6,5 @@ export default filter_empty_inputs = (inputs) => {
     return acc;
   }, {});
 };
+
+export default filter_empty_inputs;

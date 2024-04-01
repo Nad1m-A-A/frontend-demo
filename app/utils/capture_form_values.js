@@ -1,4 +1,4 @@
-export default capture_from_values = (formData) => {
+const capture_from_values = (formData) => {
   const inputValues = {};
   for (const [name, value] of formData.entries()) {
     inputValues[name] =
@@ -6,3 +6,5 @@ export default capture_from_values = (formData) => {
   }
   return inputValues;
 };
+
+export default capture_from_values;

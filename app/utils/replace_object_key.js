@@ -1,4 +1,4 @@
-export default replace_object_key = (object, oldKey, newKey) => {
+const replace_object_key = (object, oldKey, newKey) => {
   const { [oldKey]: _, ...otherProperties } = object;
   const newObject = {
     [newKey]: object[oldKey],
@@ -6,3 +6,5 @@ export default replace_object_key = (object, oldKey, newKey) => {
   };
   return newObject;
 };
+
+export default replace_object_key;

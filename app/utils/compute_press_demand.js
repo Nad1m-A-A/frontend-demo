@@ -1,4 +1,4 @@
-export default compute_press_demand = (
+const compute_press_demand = (
   orderProduction,
   orderDetails,
   defaultAlloyDetails,
@@ -27,3 +27,5 @@ export default compute_press_demand = (
 
   return demand;
 };
+
+export default compute_press_demand;
