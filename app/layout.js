@@ -1,11 +1,14 @@
 "use client";
+import "./globals.css";
 import { useRouter, usePathname } from "next/navigation";
-import { Inter } from "next/font/google";
+import { useEffect } from "react";
 import Link from "next/link.js";
 import Image from "next/image";
-const inter = Inter({ subsets: ["latin"] });
-import "./globals.css";
-import { useEffect } from "react";
+import { Manrope } from "next/font/google";
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+});
 
 export default function RootLayout({ children }) {
   const pages = ["Press", "Chemicals", "Alloy"];
@@ -22,7 +25,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={manrope.className}>
         {!isLogin && (
           <>
             <Image
