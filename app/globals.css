@@ -20,6 +20,9 @@ h2 {
 h3 {
   padding-bottom: 0.8rem;
 }
+h4 {
+  padding-bottom: .5rem;
+}
 
 ul {
   list-style: none;
