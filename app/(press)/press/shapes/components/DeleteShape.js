@@ -1,12 +1,12 @@
 "use client";
 import httpRequest from "@/app/actions/httpRequest";
-import Button from "@/app/components/Button";
 import { useRouter } from "next/navigation";
 
 function DeleteShape({ shapeId }) {
   const router = useRouter();
 
-  const deleteShapeHandler = async () => {
+  const deleteShapeHandler = async (e) => {
+    e.preventDefault();
     const deleteConfirmation = window.confirm("Click (OK) to delete shape");
     if (!deleteConfirmation) return;
     const [feedback] = await httpRequest(
@@ -18,9 +18,9 @@ function DeleteShape({ shapeId }) {
     router.replace("/press/shapes");
   };
   return (
-      <button className="delete_button" onClick={deleteShapeHandler}>
-        Delete
-      </button>
+    <button className="delete_button" onClick={(e) => deleteShapeHandler(e)}>
+      Delete
+    </button>
   );
 }
 

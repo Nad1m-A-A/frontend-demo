@@ -7,7 +7,6 @@ async function OrderPage({ params }) {
   ]);
   return (
     <div className="page">
-      <h3>Edit Order</h3>
       <OrderEditor order={order} />
     </div>
   );

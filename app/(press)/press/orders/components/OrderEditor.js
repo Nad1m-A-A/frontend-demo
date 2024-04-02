@@ -7,7 +7,7 @@ function OrderEditor({ order }) {
   return (
     <form
       id="order_editor"
-      className="flex flex-col gap-2 w-fit"
+      className="form"
       action={async (formData) => {
         "use server";
         const inputs = filter_from_values(capture_form_values(formData));
@@ -24,6 +24,8 @@ function OrderEditor({ order }) {
         console.log(feedback);
       }}
     >
+      <h3>Edit Order</h3>
+
       <label>
         name:
         <input
@@ -46,9 +48,7 @@ function OrderEditor({ order }) {
           />
         </label>
       ))}
-      <div className="flex gap-2 flex-col items-end">
-        <Button className="finish_button" text="Save" />
-      </div>
+      <Button className="finish_button" text="Save" />
     </form>
   );
 }

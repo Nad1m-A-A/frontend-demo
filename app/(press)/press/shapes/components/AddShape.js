@@ -16,7 +16,7 @@ function AddShape() {
   return (
     <form
       id="add_shape"
-      className="flex flex-col gap-2 w-fit m-auto pt-10"
+      className="form"
       action={async (formData) => {
         "use server";
         const inputs = filter_action_keys(capture_form_values(formData));
@@ -29,7 +29,7 @@ function AddShape() {
         console.log(feedback);
       }}
     >
-      <h3 className="text-center">Add Shape</h3>
+      <h3>Add Shape</h3>
 
       {shapeKeys.map(({ key, type }, index) => (
         <input
@@ -41,12 +41,10 @@ function AddShape() {
           required
         />
       ))}
-      <div className="flex gap-2 flex-col items-end">
-        <Button text="Add" />
-        <button type="reset" className="bg-gray-500">
-          Reset
-        </button>
-      </div>
+      <Button text="Add" />
+      <button type="reset" className="bg-gray-500">
+        Reset
+      </button>
     </form>
   );
 }

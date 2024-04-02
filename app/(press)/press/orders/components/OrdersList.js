@@ -3,16 +3,9 @@ import Link from "next/link";
 import OrderDemand from "./OrderDemand";
 async function OrdersList({ orders }) {
   return (
-    <div
-      id="orders_list"
-      className="list"
-    >
+    <div id="orders_list" className="list">
       {orders.reverse().map(({ _id, name, details, production }, index) => (
-        <div
-          key={index}
-          id="order"
-          className="card"
-        >
+        <div key={index} id="order" className="card">
           <h4>{name}</h4>
           <ul className="flex justify-between">
             <div id="order_details">
@@ -32,15 +25,14 @@ async function OrdersList({ orders }) {
             </div>
           </ul>
           <DeleteOrder orderId={_id} />
-          <Link
-            className="p-0 bg-transparent hover:bg-transparent"
-            href={`/press/orders/${_id}`}
-          >
+          <Link className="w-fit" href={`/press/orders/${_id}`}>
             <button>Edit</button>
           </Link>
         </div>
       ))}
-      {orders.length === 0 && <div className="text-center">No orders available</div>}
+      {orders.length === 0 && (
+        <div className="text-center">No orders available</div>
+      )}
     </div>
   );
 }

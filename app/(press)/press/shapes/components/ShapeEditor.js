@@ -9,9 +9,9 @@ const ENDPOINT = process.env.ENDPOINT;
 
 function ShapeEditor({ shape, shapeId }) {
   return (
-    <div className="max-w-fit flex flex-col items-end gap-2">
+    <>
       <form
-        className="flex flex-col gap-2 w-fit"
+        className="form"
         id="shape_editor"
         action={async (formData) => {
           "use server";
@@ -34,18 +34,18 @@ function ShapeEditor({ shape, shapeId }) {
           console.log(feedback);
         }}
       >
+        <h3>Edit Shape</h3>
+
         {Object.entries(shape).map(([key, value], index) => (
           <label key={index}>
             {key}:
             <input name={key} placeholder={value} key={key} />
           </label>
         ))}
-        <div className="flex gap-2 flex-col items-end">
-          <Button className="finish_button" text="Save" />
-        </div>
+        <Button className="finish_button" text="Save" />
+        <DeleteShape shapeId={shapeId} />
       </form>
-      <DeleteShape shapeId={shapeId} />
-    </div>
+    </>
   );
 }
 

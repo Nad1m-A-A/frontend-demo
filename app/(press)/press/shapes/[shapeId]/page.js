@@ -8,7 +8,6 @@ async function ShapePage({ params: { shapeId } }) {
   ]);
   return (
     <div id="shape" className="page">
-      <h3>Edit Shape</h3>
       <ShapeEditor shape={shape} shapeId={shapeId} />
     </div>
   );

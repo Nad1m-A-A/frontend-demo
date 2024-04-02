@@ -7,10 +7,8 @@ async function ShapesPage() {
   return (
     <div className="page">
       <h2>Shapes</h2>
-      <div>
         <ShapeList shapes={shapes} />
         <AddShape />
-      </div>
     </div>
   );
 }

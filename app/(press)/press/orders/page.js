@@ -11,10 +11,8 @@ async function OrdersPage() {
   return (
     <div className="page">
       <h2>Orders</h2>
-      <div className="list">
-        <OrdersList orders={orders} />
-        <AddPressOrder shapes={shapes} />
-      </div>
+      <OrdersList orders={orders} />
+      <AddPressOrder shapes={shapes} />
     </div>
   );
 }
