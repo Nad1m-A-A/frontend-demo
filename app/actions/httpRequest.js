@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+const ENDPOINT = process.env.ENDPOINT;
 
 export default async function httpRequest(
   endpoints,
@@ -21,7 +22,7 @@ export default async function httpRequest(
     );
 
     paths.forEach((path) => {
-      revalidatePath(path, "page");
+      revalidatePath("https://k6-navy.vercel.app" + path, "page");
     });
 
     return await Promise.all(responses.map((response) => response.json()));
