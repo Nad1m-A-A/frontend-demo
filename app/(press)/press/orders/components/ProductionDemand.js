@@ -1,18 +1,7 @@
-import httpRequest from "@/app/actions/httpRequest";
 import compute_press_demand from "@/app/utils/compute_press_demand";
-const ENDPOINT = process.env.ENDPOINT;
 async function ProductionDemand({ orderProduction, orderDetails, index }) {
-  const [alloy, shapes] = await httpRequest([
-    `${ENDPOINT}alloy`,
-    `${ENDPOINT}shapes`,
-  ]);
+  const demand = await compute_press_demand(orderProduction, orderDetails);
 
-  const demand = compute_press_demand(
-    orderProduction,
-    orderDetails,
-    alloy.details,
-    shapes
-  );
   return (
     <div className="flex">
       {Object.entries(demand[index]).map(([key, value], itemIndex) => (
@@ -20,6 +9,8 @@ async function ProductionDemand({ orderProduction, orderDetails, index }) {
           {value > 0 && (
             <span>
               {key === "weight"
+                ? ""
+                : key === "width"
                 ? ""
                 : key === "length"
                 ? `${value}cm /`

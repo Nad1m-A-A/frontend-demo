@@ -9,7 +9,6 @@ function OrderProduction({ order: { _id, name, details, production } }) {
   const productionStatus = Object.keys(details).map(
     (key) => production[key] >= details[key]
   );
-  const allComplete = productionStatus.every((status) => status === true);
   return (
     <form
       className="card"
@@ -46,9 +45,7 @@ function OrderProduction({ order: { _id, name, details, production } }) {
               className="w-14"
               type="number"
               name={key}
-              placeholder={`${value} ${
-                productionStatus[index] ? "(complete)" : ""
-              }`}
+              placeholder={value}
             />
           </label>
           <ProductionDemand
