@@ -21,7 +21,7 @@ export default async function httpRequest(
     );
 
     paths.forEach((path) => {
-      revalidatePath(path);
+      revalidatePath(path, "page");
     });
 
     return await Promise.all(responses.map((response) => response.json()));
