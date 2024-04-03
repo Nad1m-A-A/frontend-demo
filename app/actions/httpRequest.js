@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 const ENDPOINT = process.env.ENDPOINT;
 
 export default async function httpRequest(
@@ -21,8 +21,9 @@ export default async function httpRequest(
       )
     );
 
+    // revalidateTag('orders')
     paths.forEach((path) => {
-      revalidatePath("https://k6-navy.vercel.app" + path, "page");
+      revalidatePath(path);
     });
 
     return await Promise.all(responses.map((response) => response.json()));
