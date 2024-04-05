@@ -16,12 +16,11 @@ export default async function httpRequest(
           body: JSON.stringify(bodies[index]),
           method,
           headers: { "Content-Type": "application/json" },
-          next: { revalidate: 5 },
+          // cache: "force-cache",
         })
       )
     );
 
-    // revalidateTag('orders')
     paths.forEach((path) => {
       revalidatePath(path);
     });
