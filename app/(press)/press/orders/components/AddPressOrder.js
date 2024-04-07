@@ -5,6 +5,7 @@ import httpRequest from "@/app/actions/httpRequest";
 import OrderName from "./OrderName";
 import OrderShapes from "./OrderShapes";
 import OrderCounts from "./OrderCounts";
+const ENDPOINT = process.env.ENDPOINT;
 
 function AddPressOrder({ shapes }) {
   const [availableShapes, setAvailableShapes] = useState(shapes);
@@ -42,7 +43,7 @@ function AddPressOrder({ shapes }) {
     setOrderName("");
 
     const [feedback] = await httpRequest(
-      ["https://k6-navy.vercel.app/orders"],
+      [`${ENDPOINT}orders`],
       "POST",
       ["/press/orders", "/press/orders/production"],
       [inputs]

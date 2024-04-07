@@ -19,8 +19,6 @@ const compute_press_demand = async (orderProduction, orderDetails) => {
       const gDemand =
         ((cmDemand / CM_TO_M) * alloyWeight) /
         defaultAlloyDetails.thicklen[shape.thickness];
-        console.log(shape.thickness);
-        console.log(defaultAlloyDetails.thicklen[shape.thickness]);
       demand.push({
         length: shape.type === "single" ? cmDemand : (cmDemand * 2).toFixed(),
         weight:

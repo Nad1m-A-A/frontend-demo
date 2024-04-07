@@ -1,6 +1,7 @@
 "use client";
 import httpRequest from "@/app/actions/httpRequest";
 import { useRouter } from "next/navigation";
+const ENDPOINT = process.env.ENDPOINT;
 
 function DeleteShape({ shapeId }) {
   const router = useRouter();
@@ -10,7 +11,7 @@ function DeleteShape({ shapeId }) {
     const deleteConfirmation = window.confirm("Click (OK) to delete shape");
     if (!deleteConfirmation) return;
     const [feedback] = await httpRequest(
-      [`https://k6-navy.vercel.app/shapes/${shapeId}`],
+      [`${ENDPOINT}shapes/${shapeId}`],
       "DELETE",
       ["/press/shapes", "/press/orders"]
     );

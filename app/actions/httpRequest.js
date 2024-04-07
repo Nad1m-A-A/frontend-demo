@@ -17,6 +17,8 @@ export default async function httpRequest(
           method,
           headers: { "Content-Type": "application/json" },
           // cache: "force-cache",
+          //! next: revalidate was causing and issue maybe, it was preventing the revalidatePath from triggering correctly
+          //! cache force maybe not needed
         })
       )
     );

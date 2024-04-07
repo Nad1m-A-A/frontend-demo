@@ -1,12 +1,12 @@
 "use client";
 import httpRequest from "@/app/actions/httpRequest";
-
+const ENDPOINT = process.env.ENDPOINT;
 function DeleteOrder({ orderId }) {
   const deleteOrderHandler = async () => {
     const deleteConfirmation = window.confirm("Click (OK) to confirm.");
     if (!deleteConfirmation) return;
     const [feedback] = await httpRequest(
-      [`https://k6-navy.vercel.app/orders/${orderId}`],
+      [`${ENDPOINT}orders/${orderId}`],
       "DELETE",
       ["/press/orders", "/press/orders/production"]
     );
