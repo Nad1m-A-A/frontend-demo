@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 const ENDPOINT = process.env.ENDPOINT;
 
 export default async function httpRequest(
@@ -16,8 +16,7 @@ export default async function httpRequest(
           body: JSON.stringify(bodies[index]),
           method,
           headers: { "Content-Type": "application/json" },
-          // cache: "force-cache",
-          //! next: revalidate was causing and issue maybe, it was preventing the revalidatePath from triggering correctly
+          //! next: revalidate was causing an issue maybe, it was preventing the revalidatePath from triggering correctly
           //! cache force maybe not needed
         })
       )

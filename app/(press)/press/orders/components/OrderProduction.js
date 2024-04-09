@@ -6,9 +6,6 @@ import ProductionDemand from "./ProductionDemand";
 import Button from "@/app/components/Button";
 const ENDPOINT = process.env.ENDPOINT;
 function OrderProduction({ order: { _id, name, details, production } }) {
-  const productionStatus = Object.keys(details).map(
-    (key) => production[key] >= details[key]
-  );
   return (
     <form
       className="card"

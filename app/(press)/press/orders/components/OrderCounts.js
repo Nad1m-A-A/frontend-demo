@@ -21,7 +21,7 @@ function OrderCounts({
               <input
                 name={shape.name}
                 type="number"
-                min={10}
+                min={0}
                 defaultValue={10}
                 step="10"
               />

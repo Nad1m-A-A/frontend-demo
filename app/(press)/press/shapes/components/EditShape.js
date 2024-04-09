@@ -20,7 +20,6 @@ function EditShape({ shape: shapeToSpread, shapeId }) {
             filter_empty_inputs(capture_form_values(formData))
           );
           inputs.unit = shapeToSpread.unit;
-          console.log(inputs);
           if (JSON.stringify(inputs) === "{}") return;
           const [feedback] = await httpRequest(
             [`${ENDPOINT}shapes/${shapeId}`],
@@ -33,8 +32,8 @@ function EditShape({ shape: shapeToSpread, shapeId }) {
             ],
             [inputs]
           );
-          updateRelatedOrders(inputs, shape.name);
-          console.log(feedback);
+          if (inputs.name) updateRelatedOrders(inputs.name, shape.name);
+          // console.log(feedback);
         }}
       >
         <h3>Edit Shape</h3>

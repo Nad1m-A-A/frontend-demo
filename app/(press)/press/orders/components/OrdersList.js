@@ -1,4 +1,4 @@
-import DeleteOrder from "../components/DeleteOrder";
+import DeleteOrder from "./DeleteOrder";
 import Link from "next/link";
 import OrderDemand from "./OrderDemand";
 async function OrdersList({ orders }) {
