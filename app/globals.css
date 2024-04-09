@@ -29,11 +29,11 @@ ul {
 }
 
 input {
-  @apply border-0 rounded px-3 py-2;
+  @apply border-0 rounded px-3 py-2 bg-white;
 }
 
 select {
-  @apply border-0 rounded px-2 py-2 w-full;
+  @apply border-0 rounded px-2 py-2 w-full bg-white;
 }
 
 

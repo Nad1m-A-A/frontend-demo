@@ -1,5 +1,5 @@
 import httpRequest from "@/app/actions/httpRequest";
-import ShapeEditor from "../components/ShapeEditor";
+import EditShape from "../components/EditShape";
 const ENDPOINT = process.env.ENDPOINT;
 
 async function ShapePage({ params: { shapeId } }) {
@@ -8,7 +8,7 @@ async function ShapePage({ params: { shapeId } }) {
   ]);
   return (
     <div id="shape" className="page">
-      <ShapeEditor shape={shape} shapeId={shapeId} />
+      <EditShape shape={shape} shapeId={shapeId} />
     </div>
   );
 }

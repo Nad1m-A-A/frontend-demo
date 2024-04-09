@@ -3,7 +3,7 @@ import { useFormStatus } from "react-dom";
 function Button({ className, text}) {
   const { pending } = useFormStatus();
   return (
-    <button className={className}>
+    <button disabled={pending} className={className}>
       {pending ? "Loading..." : text}
     </button>
   );

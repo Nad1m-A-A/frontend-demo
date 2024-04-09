@@ -3,11 +3,12 @@ import filter_empty_inputs from "@/app/utils/filter_empty_inputs";
 import filter_action_keys from "@/app/utils/filter_action_keys";
 import httpRequest from "@/app/actions/httpRequest";
 import updateRelatedOrders from "@/app/actions/updateRelatedOrders";
-import DeleteShape from "../components/DeleteShape";
+import DeleteShape from "./DeleteShape";
 import Button from "@/app/components/Button";
 const ENDPOINT = process.env.ENDPOINT;
 
-function ShapeEditor({ shape, shapeId }) {
+function EditShape({ shape: shapeToSpread, shapeId }) {
+  const { unit, ...shape } = shapeToSpread;
   return (
     <>
       <form
@@ -18,6 +19,8 @@ function ShapeEditor({ shape, shapeId }) {
           const inputs = filter_action_keys(
             filter_empty_inputs(capture_form_values(formData))
           );
+          inputs.unit = shapeToSpread.unit;
+          console.log(inputs);
           if (JSON.stringify(inputs) === "{}") return;
           const [feedback] = await httpRequest(
             [`${ENDPOINT}shapes/${shapeId}`],
@@ -37,10 +40,17 @@ function ShapeEditor({ shape, shapeId }) {
         <h3>Edit Shape</h3>
 
         {Object.entries(shape).map(([key, value], index) => (
-          <label key={index}>
-            {key}:
-            <input name={key} placeholder={value} key={key} />
-          </label>
+          <div className="flex items-center w-full gap-2" key={index}>
+            <label>{key}:</label>
+            {key === "type" ? (
+              <select name="type" defaultValue={shape.type}>
+                <option value="half">half</option>
+                <option value="full">full</option>
+              </select>
+            ) : (
+              <input name={key} placeholder={value} key={key} />
+            )}
+          </div>
         ))}
         <Button className="finish_button" text="Save" />
         <DeleteShape shapeId={shapeId} />
@@ -49,4 +59,4 @@ function ShapeEditor({ shape, shapeId }) {
   );
 }
 
-export default ShapeEditor;
+export default EditShape;
