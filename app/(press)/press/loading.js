@@ -1,9 +1,7 @@
-import React from 'react'
+import Loader from "@/app/components/Loader";
 
-function Loading() {
-  return (
-    <div>Loading...</div>
-  )
+function PressLoader() {
+  return <Loader />;
 }
 
-export default Loading
+export default PressLoader;
