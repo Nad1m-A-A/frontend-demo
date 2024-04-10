@@ -1,8 +1,7 @@
 import compute_press_demand from "@/app/utils/compute_press_demand";
-import Link from "next/link";
 import GroupDemand from "./GroupDemand";
 async function OrderDemand({ orderProduction, orderDetails }) {
-  const { totalWeight, totalLength, demand } = await compute_press_demand(
+  const { totalWeight, totalLength, thickness, demand } = await compute_press_demand(
     orderProduction,
     orderDetails
   );
@@ -16,10 +15,8 @@ async function OrderDemand({ orderProduction, orderDetails }) {
           </div>
         ))}
       </div>
-      <div className="flex flex-col gap-2 my-2 py-1 w-fit border-y border-black">
-        <b>{totalWeight}g Total</b>
-      </div>
-        <GroupDemand demand={demand}/>
+        <b  className="flex flex-col gap-2 my-2 py-1 w-fit border-y border-black">{totalWeight}g Total</b>
+        <GroupDemand demand={demand} totalLength={totalLength} thickness={thickness}/>
     </>
   );
 }

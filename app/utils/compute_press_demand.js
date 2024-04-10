@@ -10,6 +10,7 @@ const compute_press_demand = async (orderProduction, orderDetails) => {
   const demand = [];
   let totalWeight = 0;
   let totalLength = 0;
+  let thickness;
 
   for (const key in orderProduction) {
     const shape = shapes.find((shape) => shape.name === key);
@@ -30,6 +31,7 @@ const compute_press_demand = async (orderProduction, orderDetails) => {
       );
       totalWeight +=  shape.type === "full" ? gDemand : gDemand * 2;
       totalLength +=  shape.type === "full" ? cmDemand : cmDemand * 2;
+      thickness = shape.thickness;
       demand.push({
         length: shape.type === "full" ? cmDemand : cmDemand * 2,
         weight: shape.type === "full" ? gDemand : gDemand * 2,
@@ -38,7 +40,7 @@ const compute_press_demand = async (orderProduction, orderDetails) => {
       });
     }
   }
-  return {totalWeight, totalLength, demand};
+  return {totalWeight, totalLength, thickness, demand};
 };
 
 export default compute_press_demand;
