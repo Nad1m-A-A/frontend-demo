@@ -8,27 +8,37 @@ const compute_press_demand = async (orderProduction, orderDetails) => {
     `${ENDPOINT}shapes`,
   ]);
   const demand = [];
+  let totalWeight = 0;
+  let totalLength = 0;
 
   for (const key in orderProduction) {
     const shape = shapes.find((shape) => shape.name === key);
     if (shape) {
-      const cmDemand =
-        ((orderDetails[key] - orderProduction[key]) * shape.length) / MM_TO_CM;
+      const cmDemand = Number(
+        (
+          ((orderDetails[key] - orderProduction[key]) * shape.length) /
+          MM_TO_CM
+        ).toFixed()
+      );
       const alloyValue = shape.width / defaultAlloyDetails.width;
       const alloyWeight = alloyValue * defaultAlloyDetails.weight;
-      const gDemand =
-        ((cmDemand / CM_TO_M) * alloyWeight) /
-        defaultAlloyDetails.thicklen[shape.thickness];
+      const gDemand = Number(
+        (
+          ((cmDemand / CM_TO_M) * alloyWeight) /
+          defaultAlloyDetails.thicklen[shape.thickness]
+        ).toFixed()
+      );
+      totalWeight +=  shape.type === "full" ? gDemand : gDemand * 2;
+      totalLength +=  shape.type === "full" ? cmDemand : cmDemand * 2;
       demand.push({
-        length: shape.type === "full" ? cmDemand : (cmDemand * 2).toFixed(),
-        weight:
-          shape.type === "full" ? gDemand.toFixed() : (gDemand * 2).toFixed(),
-        pieces: orderDetails[key] - orderProduction[key],
+        length: shape.type === "full" ? cmDemand : cmDemand * 2,
+        weight: shape.type === "full" ? gDemand : gDemand * 2,
         width: shape.width,
+        pieces: orderDetails[key] - orderProduction[key],
       });
     }
   }
-  return demand;
+  return {totalWeight, totalLength, demand};
 };
 
 export default compute_press_demand;

@@ -1,6 +1,6 @@
 import compute_press_demand from "@/app/utils/compute_press_demand";
 async function ProductionDemand({ orderProduction, orderDetails, index }) {
-  const demand = await compute_press_demand(orderProduction, orderDetails);
+  const {demand} = await compute_press_demand(orderProduction, orderDetails);
 
   return (
     <div className="flex">
@@ -11,7 +11,7 @@ async function ProductionDemand({ orderProduction, orderDetails, index }) {
               {key === "weight"
                 ? ""
                 : key === "width"
-                ? ""
+                ? `${value}mm /`
                 : key === "length"
                 ? `${value}cm /`
                 : `${value}ps`}

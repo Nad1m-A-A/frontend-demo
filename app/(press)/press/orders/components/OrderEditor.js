@@ -40,7 +40,6 @@ function OrderEditor({ order }) {
           {key}:
           <input
             type="number"
-            step={10}
             required
             name={key}
             defaultValue={value}

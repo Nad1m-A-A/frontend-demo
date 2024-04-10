@@ -1,4 +1,4 @@
-/* @tailwind base; */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -13,12 +13,24 @@ body {
   background-color: #d3d3d3;
 }
 
+h1,h2,h3,h4 {
+  font-weight: bold;
+}
+
+
+h1 {
+  padding: 1.25rem 0;
+  font-size: 1.8rem;
+}
+
 h2 {
   padding: 1.25rem 0;
+  font-size: 1.5rem;
 }
 
 h3 {
   padding-bottom: 0.8rem;
+  font-size: 1.2rem;
 }
 h4 {
   padding-bottom: .5rem;
@@ -29,11 +41,11 @@ ul {
 }
 
 input {
-  @apply border-0 rounded px-3 py-2 bg-white;
+  @apply border-0 rounded px-3 py-2 bg-white text-xs;
 }
 
 select {
-  @apply border-0 rounded px-2 py-2 w-full bg-white;
+  @apply border-0 rounded px-2 py-2 w-full bg-white text-xs;
 }
 
 
@@ -42,7 +54,7 @@ label {
 }
 
 button {
-  @apply border-none shadow-sm text-white py-2 px-4 rounded cursor-pointer w-fit bg-blue-600;
+  @apply border-none shadow-sm text-white py-2 px-4 rounded cursor-pointer w-fit bg-blue-600 text-xs;
 }
 
 .nav {
@@ -50,7 +62,7 @@ button {
 }
 
 .link {
-  @apply bg-gray-100 text-black px-4 py-2 rounded-sm cursor-pointer hover:bg-gray-200;
+  @apply underline bg-gray-100 text-black px-4 py-2 rounded-sm cursor-pointer hover:bg-gray-200;
 }
 
 .page {
@@ -79,6 +91,9 @@ button {
 
 .delete_button {
   @apply bg-red-600;
+}
+.plain_button {
+  @apply bg-white;
 }
 
 .delete_icon {
