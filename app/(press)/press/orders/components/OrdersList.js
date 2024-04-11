@@ -9,8 +9,8 @@ async function OrdersList({ orders }) {
           <div className="absolute left-0 right-0 top-0 bottom-0 overflow-hidden">
             <div className="live_bg"></div>
           </div>
-          <h4>{name}</h4>
-          <ul className="flex justify-between">
+          <h4 className="relative ">{name}</h4>
+          <ul className="relative flex justify-between">
             <div id="order_details">
               {Object.entries(details).map(([key, value], index) => (
                 <li key={index}>

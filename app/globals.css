@@ -54,6 +54,7 @@ label {
   @apply flex items-center justify-between gap-2 w-full;
 }
 
+
 button {
   @apply border-none shadow-sm text-white py-2 px-4 rounded cursor-pointer w-fit text-xs hover:bg-right;
   background-image: linear-gradient(
@@ -64,6 +65,7 @@ button {
   );
   transition: 0.5s;
   background-size: 200% auto;
+  position: relative;
 }
 
 .nav {
@@ -146,11 +148,11 @@ button {
 .live_bg {
   min-height: 160%;
   top: -30%;
-  min-width: 1%;
+  min-width: 1.5%;
   transform: rotate(-45deg);
   position: absolute;
-  animation: flicker 9s infinite ease-out;
-  box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.842);
+  animation: flicker 7s infinite ease-out;
+  box-shadow: 8px 10px 3px rgba(255, 255, 255, 0.582);
 }
 
 @keyframes flicker {
@@ -159,6 +161,6 @@ button {
 
   }
   100% {
-    margin-left: 1000%;
+    margin-left: 900%;
   }
 }
