@@ -75,31 +75,35 @@ function GroupDemand({ demand, thickness }) {
 
   return (
     <>
-      <button className="my-4 main_button" onClick={toggleGrouping}>
-        {groupingOn ? "Cancel" : "Group"}
-      </button>
+      {demand.length > 1 && (
+        <>
+          <button className="my-4 main_button" onClick={toggleGrouping}>
+            {groupingOn ? "Cancel" : "Group"}
+          </button>
 
-      {groupingOn && (
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-wrap flex-col gap-2">
-            {demand.map(({ weight, width, length }, index) => (
-              <button
-                value={[weight, width, length]}
-                onClick={groupHandler}
-                key={index}
-                className="plain_button"
-              >
-                {weight}/{width}
-              </button>
-            ))}
-          </div>
-          {groupingTotal && !loading && (
-            <b className="flex flex-col gap-2 my-2 py-1 w-fit border-y border-black">
-              {groupingTotal}g/ {groupingWidth}mm
-            </b>
+          {groupingOn && (
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-wrap flex-col gap-2">
+                {demand.map(({ weight, width, length }, index) => (
+                  <button
+                    value={[weight, width, length]}
+                    onClick={groupHandler}
+                    key={index}
+                    className="plain_button"
+                  >
+                    {weight}/{width}
+                  </button>
+                ))}
+              </div>
+              {groupingTotal && !loading && (
+                <b className="flex flex-col gap-2 my-2 py-1 w-fit border-y border-black">
+                  {groupingTotal}g/ {groupingWidth}mm
+                </b>
+              )}
+              {loading && <b className="w-fit animate-spin text-2xl">/</b>}
+            </div>
           )}
-          {loading && <b className="w-fit animate-spin text-2xl">/</b>}
-        </div>
+        </>
       )}
     </>
   );
