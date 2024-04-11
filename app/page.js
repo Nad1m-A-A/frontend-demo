@@ -11,7 +11,7 @@ const HomePage = () => {
       <div className="page">
         <button
           onClick={() => handleLanguage(english)}
-          className="self-start py-1 px-2"
+          className="self-start py-1 px-2 main_button"
         >
           {english ? "العربية" : "English"}
         </button>

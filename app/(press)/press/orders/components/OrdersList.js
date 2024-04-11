@@ -26,7 +26,7 @@ async function OrdersList({ orders }) {
           </ul>
           <DeleteOrder orderId={_id} />
           <Link className="w-fit" href={`/press/orders/${_id}`}>
-            <button>Edit</button>
+            <button className="main_button">Edit</button>
           </Link>
         </div>
       ))}

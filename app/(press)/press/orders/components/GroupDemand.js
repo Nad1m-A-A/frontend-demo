@@ -53,7 +53,7 @@ function GroupDemand({ demand, thickness }) {
     );
 
     e.target.classList.toggle("plain_button");
-    e.target.classList.toggle("delete_button");
+    e.target.classList.toggle("fancy_button");
 
     if (isMatch) {
       const updatedGroup = [...groupItems];
@@ -75,7 +75,7 @@ function GroupDemand({ demand, thickness }) {
 
   return (
     <>
-      <button className="my-4" onClick={toggleGrouping}>
+      <button className="my-4 main_button" onClick={toggleGrouping}>
         {groupingOn ? "Cancel" : "Group"}
       </button>
 
@@ -87,7 +87,7 @@ function GroupDemand({ demand, thickness }) {
                 value={[weight, width, length]}
                 onClick={groupHandler}
                 key={index}
-                className="plain_button text-black"
+                className="plain_button"
               >
                 {weight}/{width}
               </button>

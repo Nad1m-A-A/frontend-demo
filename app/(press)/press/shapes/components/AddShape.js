@@ -72,8 +72,8 @@ function AddShape() {
         className="bg-gray-200"
       />
 
-      <Button text="Add" />
-      <button type="reset" className="bg-gray-500">
+      <Button text="Add" className="finish_button"/>
+      <button className="delete_button" type="reset">
         Reset
       </button>
     </form>

@@ -13,10 +13,12 @@ body {
   background-color: #d3d3d3;
 }
 
-h1,h2,h3,h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: bold;
 }
-
 
 h1 {
   padding: 1.25rem 0;
@@ -33,7 +35,7 @@ h3 {
   font-size: 1.2rem;
 }
 h4 {
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 
 ul {
@@ -48,13 +50,20 @@ select {
   @apply border-0 rounded px-2 py-2 w-full bg-white text-xs;
 }
 
-
 label {
   @apply flex items-center justify-between gap-2 w-full;
 }
 
 button {
-  @apply border-none shadow-sm text-white py-2 px-4 rounded cursor-pointer w-fit bg-blue-600 text-xs;
+  @apply border-none shadow-sm text-white py-2 px-4 rounded cursor-pointer w-fit text-xs hover:bg-right;
+  background-image: linear-gradient(
+    to right,
+    #ece9e6 0%,
+    #ffffff 51%,
+    #ece9e6 100%
+  );
+  transition: 0.5s;
+  background-size: 200% auto;
 }
 
 .nav {
@@ -85,17 +94,52 @@ button {
   @apply self-end;
 }
 
+.plain_button {
+  @apply text-black;
+}
+
+.main_button {
+  background-image: linear-gradient(
+    to right,
+    #06279c 0%,
+    #0c5fb3 51%,
+    #06279c 100%
+  );
+}
+
 .finish_button {
-  @apply bg-green-600;
+  background-image: linear-gradient(
+    to right,
+    #338805 0%,
+    #4db313 51%,
+    #338805 100%
+  );
 }
 
 .delete_button {
-  @apply bg-red-600;
+  background-image: linear-gradient(
+    to right,
+    #b31217 0%,
+    #e44741 51%,
+    #b31217 100%
+  );
 }
-.plain_button {
-  @apply bg-white;
+
+.fancy_button {
+  background-image: linear-gradient(
+    to right,
+    #000000 0%,
+    #434343 51%,
+    #000000 100%
+  );
+  color: white;
 }
 
 .delete_icon {
   @apply fill-red-600 cursor-pointer;
 }
+
+.loading_icon * {
+  @apply fill-blue-600;
+}
+
