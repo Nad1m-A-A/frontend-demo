@@ -5,7 +5,7 @@ async function OrdersList({ orders }) {
   return (
     <div id="orders_list" className="list">
       {orders.reverse().map(({ _id, name, details, production }, index) => (
-        <div key={index} id="order" className="card relative ">
+        <div key={index} id="order" className="card relative">
           <div className="absolute left-0 right-0 top-0 bottom-0 overflow-hidden">
             <div className="live_bg"></div>
           </div>
