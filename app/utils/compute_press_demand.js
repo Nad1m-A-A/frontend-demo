@@ -29,8 +29,7 @@ const compute_press_demand = async (orderProduction, orderDetails) => {
           defaultAlloyDetails.thicklen[shape.thickness]
         ).toFixed()
       );
-      totalWeight +=  shape.type === "full" ? gDemand : gDemand * 2;
-      totalLength +=  shape.type === "full" ? cmDemand : cmDemand * 2;
+      totalWeight += shape.type === "full" ? gDemand : gDemand * 2;
       thickness = shape.thickness;
       demand.push({
         length: shape.type === "full" ? cmDemand : cmDemand * 2,
@@ -40,7 +39,7 @@ const compute_press_demand = async (orderProduction, orderDetails) => {
       });
     }
   }
-  return {totalWeight, totalLength, thickness, demand};
+  return { totalWeight, thickness, demand };
 };
 
 export default compute_press_demand;
