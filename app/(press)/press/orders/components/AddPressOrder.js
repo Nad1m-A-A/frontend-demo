@@ -5,6 +5,7 @@ import httpRequest from "@/app/actions/httpRequest";
 import OrderName from "./OrderName";
 import OrderShapes from "./OrderShapes";
 import OrderCounts from "./OrderCounts";
+import match_string_to_array_items from "@/app/utils/match_string_to_array_items";
 const ENDPOINT = process.env.ENDPOINT;
 
 function AddPressOrder({ shapes }) {
@@ -21,17 +22,31 @@ function AddPressOrder({ shapes }) {
 
   const getOrderShape = (e) => {
     const shapeName = e.target.innerHTML;
-    setSelectedShapes((prev) => [...prev, { name: shapeName }]);
-    const remainingShapes = availableShapes.filter(
-      (item) => item.name !== shapeName
+    const { isMatch, matchIndex } = match_string_to_array_items(
+      selectedShapes,
+      shapeName
     );
-    setAvailableShapes(remainingShapes);
+    e.target.classList.toggle("plain_button");
+    e.target.classList.toggle("fancy_button");
+
+    if (isMatch) {
+      const updatedShapes = [...selectedShapes];
+      updatedShapes.splice(matchIndex, 1);
+      setSelectedShapes(updatedShapes);
+      return;
+    }
+    setSelectedShapes((prev) => [...prev, { name: shapeName }]);
   };
 
   const storeOrderHandler = async (formValues) => {
+    const currentDate = new Date();
+    const month = (currentDate.getMonth() + 1).toString(); // Adding 1 because months are zero-indexed
+    const day = currentDate.getDate().toString();
+    const formattedDate = `${month}/${day}`;
+
     const inputValues = capture_form_values(formValues);
     const inputs = {
-      name: orderName || undefined,
+      name: orderName || formattedDate,
       details: inputValues,
       production: Object.fromEntries(
         Object.keys(inputValues).map((key) => [key, 0])
@@ -52,6 +67,13 @@ function AddPressOrder({ shapes }) {
     console.log(feedback);
   };
 
+  const cancelOrderHandler = () => {
+    setAvailableShapes(shapes);
+    setSelectedShapes([]);
+    setOrderName("");
+    setStep(1);
+  };
+
   return (
     <>
       {shapes.length !== 0 && (
@@ -66,7 +88,12 @@ function AddPressOrder({ shapes }) {
           )}
           {step === 3 && (
             <OrderCounts
-              props={{ storeOrderHandler, setSelectedShapes, selectedShapes }}
+              props={{
+                cancelOrderHandler,
+                storeOrderHandler,
+                setSelectedShapes,
+                selectedShapes,
+              }}
             />
           )}
         </div>

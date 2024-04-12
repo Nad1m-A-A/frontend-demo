@@ -95,7 +95,7 @@ function GroupDemand({ demand, thickness }) {
                   </button>
                 ))}
               </div>
-              {groupingTotal && !loading && (
+              {groupingTotal && groupItems.length > 1 && !loading && (
                 <b className="flex flex-col gap-2 my-2 py-1 w-fit border-y border-black">
                   {groupingTotal}g/ {groupingWidth}mm
                 </b>

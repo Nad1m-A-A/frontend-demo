@@ -72,6 +72,7 @@ async function ChemicalsList() {
           </form>
         </Card>
       ))}
+      {chemicals.length === 0 && <div className="text-center">No chemicals available</div>}
     </div>
   );
 }

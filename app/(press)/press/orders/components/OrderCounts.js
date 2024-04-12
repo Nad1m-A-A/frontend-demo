@@ -1,10 +1,15 @@
 import Button from "@/app/components/Button";
 
 function OrderCounts({
-  props: { storeOrderHandler, setSelectedShapes, selectedShapes },
+  props: {
+    cancelOrderHandler,
+    storeOrderHandler,
+    setSelectedShapes,
+    selectedShapes,
+  },
 }) {
   const handleDeleteShape = (index) => {
-    const updatedShapes = [...selectedShapes]
+    const updatedShapes = [...selectedShapes];
     updatedShapes.splice(index, 1);
     setSelectedShapes(updatedShapes);
   };
@@ -42,6 +47,12 @@ function OrderCounts({
         ))}
         <Button className="finish_button" text="Done" />
       </form>
+      <button
+        onClick={() => cancelOrderHandler()}
+        className="delete_button mt-2"
+      >
+        Cancel
+      </button>
     </div>
   );
 }
