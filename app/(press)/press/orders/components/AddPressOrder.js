@@ -40,8 +40,8 @@ function AddPressOrder({ shapes }) {
 
   const storeOrderHandler = async (formValues) => {
     const currentDate = new Date();
-    const month = (currentDate.getMonth() + 1).toString(); // Adding 1 because months are zero-indexed
-    const day = currentDate.getDate().toString();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+    const day = currentDate.getDate().toString().padStart(2, "0");
     const formattedDate = `${month}/${day}`;
 
     const inputValues = capture_form_values(formValues);

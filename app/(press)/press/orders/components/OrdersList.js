@@ -28,7 +28,7 @@ async function OrdersList({ orders }) {
           <DeleteListItem
             collection="orders"
             itemId={_id}
-            paths={["/press/orders", "/press/orders/production"]}
+            paths={["/press/orders", "/press/orders/production"]} 
           />
           <Link className="w-fit" href={`/press/orders/${_id}`}>
             <button className="main_button">Edit</button>
