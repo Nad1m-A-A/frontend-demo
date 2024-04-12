@@ -56,7 +56,7 @@ label {
 
 
 button {
-  @apply border-none shadow-sm text-white py-2 px-4 rounded cursor-pointer w-fit text-xs hover:bg-right;
+  @apply border-none shadow-sm text-white py-2 px-4 rounded cursor-pointer w-fit text-xs hover:bg-right relative;
   background-image: linear-gradient(
     to right,
     #ece9e6 0%,
@@ -65,7 +65,6 @@ button {
   );
   transition: 0.5s;
   background-size: 200% auto;
-  position: relative;
 }
 
 .nav {
@@ -85,16 +84,17 @@ button {
 }
 
 .card {
-  @apply bg-gray-100 py-4 px-8 rounded-sm shadow-sm flex flex-col gap-2 w-full;
+  @apply bg-gray-100 py-4 px-8 rounded-sm shadow-sm flex flex-col gap-2 w-full relative;
+}
+
+.card * {
+  @apply z-20 relative
 }
 
 .form {
-  @apply flex flex-col items-center gap-2 w-fit pt-10;
+  @apply flex flex-col gap-2 w-fit;
 }
 
-.form button {
-  @apply self-end;
-}
 
 .plain_button {
   @apply text-black;
@@ -140,19 +140,23 @@ button {
 .delete_icon {
   @apply fill-red-600 cursor-pointer;
 }
-
-.loading_icon * {
+.loading_icon {
   @apply fill-blue-600;
 }
 
-.live_bg {
+.flicker_parent {
+  @apply absolute left-0 right-0 top-0 bottom-0 overflow-hidden
+}
+
+.flicker {
   min-height: 160%;
   top: -30%;
-  min-width: 1.5%;
+  min-width: 1rem;
   transform: rotate(-30deg);
   position: absolute;
   animation: flicker 7s infinite ease-out;
-  box-shadow: 8px 10px 10px rgba(255, 255, 255, 0.671);
+  background: rgba(255, 255, 255, 0.479);
+  filter: blur(5px);
 }
 
 @keyframes flicker {

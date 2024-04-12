@@ -1,22 +1,23 @@
 "use client";
 import httpRequest from "@/app/actions/httpRequest";
 const ENDPOINT = process.env.ENDPOINT;
-function DeleteOrder({ orderId }) {
-  const deleteOrderHandler = async () => {
+function DeleteListItem({ collection, itemId, paths }) {
+  const deleteItemHandler = async (e) => {
+    e.preventDefault();
     const deleteConfirmation = window.confirm("Click (OK) to confirm.");
     if (!deleteConfirmation) return;
     const [feedback] = await httpRequest(
-      [`${ENDPOINT}orders/${orderId}`],
+      [`${ENDPOINT}${collection}/${itemId}`],
       "DELETE",
-      ["/press/orders", "/press/orders/production"]
+      paths
     );
     console.log(feedback);
   };
   return (
-    <form id="delete_shape" action={deleteOrderHandler}>
-      <button className="delete_button">Delete Order</button>
-    </form>
+    <button onClick={(e) => deleteItemHandler(e)} className="delete_button">
+      Delete
+    </button>
   );
 }
 
-export default DeleteOrder;
+export default DeleteListItem;

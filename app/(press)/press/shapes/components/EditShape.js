@@ -11,6 +11,8 @@ function EditShape({ shape: shapeToSpread, shapeId }) {
   const { unit, ...shape } = shapeToSpread;
   return (
     <>
+      <h3>Edit Shape</h3>
+
       <form
         className="form"
         id="shape_editor"
@@ -33,11 +35,9 @@ function EditShape({ shape: shapeToSpread, shapeId }) {
             [inputs]
           );
           if (inputs.name) updateRelatedOrders(inputs.name, shape.name);
-          // console.log(feedback);
+          console.log(feedback);
         }}
       >
-        <h3>Edit Shape</h3>
-
         {Object.entries(shape).map(([key, value], index) => (
           <div className="flex items-center w-full gap-2" key={index}>
             <label>{key}:</label>

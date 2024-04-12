@@ -1,7 +1,7 @@
 import httpRequest from "@/app/actions/httpRequest";
 import Button from "@/app/components/Button";
 import capture_form_values from "@/app/utils/capture_form_values";
-import filter_from_values from "@/app/utils/filter_action_keys";
+import filter_action_keys from "@/app/utils/filter_action_keys";
 const ENDPOINT = process.env.ENDPOINT;
 function OrderEditor({ order }) {
   return (
@@ -10,7 +10,7 @@ function OrderEditor({ order }) {
       className="form"
       action={async (formData) => {
         "use server";
-        const inputs = filter_from_values(capture_form_values(formData));
+        const inputs = filter_action_keys(capture_form_values(formData));
         const [feedback] = await httpRequest(
           [`${ENDPOINT}orders/${order._id}`],
           "PATCH",

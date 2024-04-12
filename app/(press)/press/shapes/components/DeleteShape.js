@@ -19,7 +19,7 @@ function DeleteShape({ shapeId }) {
     router.replace("/press/shapes");
   };
   return (
-    <button className="delete_button" onClick={(e) => deleteShapeHandler(e)}>
+    <button  className="delete_button" onClick={(e) => deleteShapeHandler(e)}>
       Delete
     </button>
   );
