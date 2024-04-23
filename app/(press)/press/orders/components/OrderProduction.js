@@ -35,14 +35,14 @@ function OrderProduction({ order: { _id, name, details, production } }) {
       <div className="flex justify-between">
         <h4>{name}</h4>
         <div className="flex">
-        <b>l(cm)/</b>
-        <b>w(mm)/</b>
+          <b>l(cm)/</b>
+          <b>w(mm)/</b>
           <b>c</b>
         </div>
       </div>
       {Object.entries(production).map(([key, value], index) => (
         <div className=" flex items-center justify-between" key={index}>
-          <label className="w-2/5">
+          <label className="w-1/2">
             {key}:
             <input
               className="w-8 md:w-10 lg:w-14"
