@@ -45,7 +45,7 @@ function OrderProduction({ order: { _id, name, details, production } }) {
           <label className="w-1/2">
             {key}:
             <input
-              className="w-8 md:w-10 lg:w-14"
+              className="w-14"
               type="number"
               name={key}
               placeholder={value}

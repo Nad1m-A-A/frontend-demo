@@ -1,7 +1,6 @@
 import compute_press_demand from "@/app/utils/compute_press_demand";
 async function ProductionDemand({ orderProduction, orderDetails, index }) {
   const { demand } = await compute_press_demand(orderProduction, orderDetails);
-  console.log(demand);
   return (
     <div className="flex">
       {Object.entries(demand[index]).map(([key, value], itemIndex) => (
