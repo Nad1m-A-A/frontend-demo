@@ -44,7 +44,7 @@ function AddShape() {
           name="width"
           type="number"
           placeholder="width"
-          step="0.5"
+          step="0.01"
           min={0}
           required
         />
@@ -52,7 +52,7 @@ function AddShape() {
           name="length"
           type="number"
           placeholder="length"
-          step="0.1"
+          step="0.01"
           min={0}
           required
         />
@@ -61,7 +61,7 @@ function AddShape() {
           list="thickness-list"
           type="number"
           placeholder="thickness"
-          step="0.01"
+          step="0.001"
           min={0}
           required
         />

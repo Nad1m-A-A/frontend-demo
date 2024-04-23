@@ -28,7 +28,6 @@ function OrderCounts({
                 type="number"
                 min={0}
                 defaultValue={10}
-                step="10"
               />
             </label>
             {selectedShapes.length > 1 && (

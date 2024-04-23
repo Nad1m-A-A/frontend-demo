@@ -23,7 +23,6 @@ function OrderProduction({ order: { _id, name, details, production } }) {
             ? inputs[key] + production[key]
             : production[key];
         });
-
         const [feedback] = await httpRequest(
           [`${ENDPOINT}orders/${_id}/production`],
           "PATCH",

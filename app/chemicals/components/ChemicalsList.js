@@ -17,7 +17,6 @@ async function ChemicalsList() {
             action={async (formData) => {
               "use server";
               const inputs = filter_action_keys(capture_form_values(formData));
-              console.log(inputs);
               const [feedback] = await httpRequest(
                 [`${ENDPOINT}chemicals/${_id}`],
                 "PATCH",
@@ -41,7 +40,7 @@ async function ChemicalsList() {
               <input
                 className={
                   count <= threshold
-                    ? "bg-red-600  placeholder-white text-white"
+                    ? "bg-red-600  text-white"
                     : ""
                 }
                 name="count"

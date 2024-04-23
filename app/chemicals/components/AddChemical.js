@@ -15,7 +15,6 @@ function AddChemical() {
         action={async (formData) => {
           "use server";
           const inputs = filter_action_keys(capture_form_values(formData));
-          console.log(inputs);
           const [feedback] = await httpRequest(
             [`${ENDPOINT}chemicals`],
 
