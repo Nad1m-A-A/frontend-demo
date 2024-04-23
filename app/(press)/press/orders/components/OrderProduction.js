@@ -32,13 +32,20 @@ function OrderProduction({ order: { _id, name, details, production } }) {
         console.log(feedback);
       }}
     >
-      <h4>{name}</h4>
+      <div className="flex justify-between">
+        <h4>{name}</h4>
+        <div className="flex">
+        <b>l(cm)/</b>
+        <b>w(mm)/</b>
+          <b>c</b>
+        </div>
+      </div>
       {Object.entries(production).map(([key, value], index) => (
-        <div className=" flex items-center justify-between gap-2" key={index}>
-          <label className="w-2/3">
+        <div className=" flex items-center justify-between" key={index}>
+          <label className="w-2/5">
             {key}:
             <input
-              className="w-14"
+              className="w-8 md:w-10 lg:w-14"
               type="number"
               name={key}
               placeholder={value}
