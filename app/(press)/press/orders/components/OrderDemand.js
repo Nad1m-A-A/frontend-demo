@@ -16,14 +16,14 @@ async function OrderDemand({ orderProduction, orderDetails }) {
           </div>
         ))}
       </div>
-      {totalWeight > 0 && (
+      {/* {totalWeight > 0 && ( */}
         <>
           <b className="flex flex-col gap-2 my-2 py-1 w-fit border-y border-black">
             {totalWeight}g Total
           </b>
           <GroupDemand demand={demand} thickness={thickness} />
         </>
-      )}
+      {/* )} */}
     </>
   );
 }
