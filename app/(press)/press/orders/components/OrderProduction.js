@@ -35,9 +35,9 @@ function OrderProduction({ order: { _id, name, details, production } }) {
       <div className="flex justify-between">
         <h4>{name}</h4>
         <div className="flex">
-          <b>l(cm)/</b>
-          <b>w(mm)/</b>
-          <b>c</b>
+          <b className="px-1">L /</b>
+          <b className="px-1">W /</b>
+          <b className="px-1">C</b>
         </div>
       </div>
       {Object.entries(production).map(([key, value], index) => (
@@ -45,6 +45,7 @@ function OrderProduction({ order: { _id, name, details, production } }) {
           <label className="w-1/2">
             {key}:
             <input
+            step="0.5"
               className="w-14"
               type="number"
               name={key}

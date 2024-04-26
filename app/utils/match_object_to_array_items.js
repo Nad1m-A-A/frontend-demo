@@ -11,7 +11,6 @@ const match_object_to_array_items = (groupingItems, newGroupingItem) => {
         matchCount++;
       }
     }
-
     if (matchCount === Object.keys(newGroupingItem).length) {
       isMatch = true;
       matchIndex = i;
@@ -19,4 +18,5 @@ const match_object_to_array_items = (groupingItems, newGroupingItem) => {
   }
   return { isMatch, matchIndex };
 };
+
 export default match_object_to_array_items;

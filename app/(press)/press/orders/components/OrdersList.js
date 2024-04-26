@@ -13,7 +13,16 @@ async function OrdersList({ orders }) {
               {Object.entries(details).map(([key, value], index) => (
                 <li key={index}>
                   <div>
-                    {key}: <span className="font-semibold">{value}</span>
+                    {key}: <b>{value}</b>
+                    <b
+                      className={
+                        production[key] >= value
+                          ? "text-blue-600"
+                          : "text-red-600"
+                      }
+                    >
+                      -{production[key]}
+                    </b>
                   </div>
                 </li>
               ))}
@@ -28,7 +37,7 @@ async function OrdersList({ orders }) {
           <DeleteListItem
             collection="orders"
             itemId={_id}
-            paths={["/press/orders", "/press/orders/production"]} 
+            paths={["/press/orders", "/press/orders/production"]}
           />
           <Link className="w-fit" href={`/press/orders/${_id}`}>
             <button className="main_button">Edit</button>

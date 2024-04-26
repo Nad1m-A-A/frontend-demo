@@ -17,8 +17,8 @@ export default function PressLayout({ children }) {
   ];
   return (
     <>
-      <h1 className="text-center -mb-6">Press</h1>
-      <div className="nav">
+      <h1 className="text-center">Press</h1>
+      <div className="nav sticky top-0 z-30 bg-black bg-opacity-50">
         {pages.map((page, index) => (
           <Link key={index} href={page.path} className="link">
             {page.name}

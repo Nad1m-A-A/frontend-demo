@@ -26,12 +26,11 @@ function GroupDemand({ demand, thickness }) {
       setGroupingWidth(width);
       setLoading(false);
     };
+
     if (groupItems.length > 1) {
       setLoading(true);
       fetchData();
     } else {
-      setGroupingTotal(null);
-      setGroupingWidth(null);
       setLoading(false);
     }
     return () => {
@@ -56,6 +55,7 @@ function GroupDemand({ demand, thickness }) {
     e.target.classList.toggle("fancy_button");
 
     if (isMatch) {
+      //! This code finds the clicked item that already exists in (groupItems) and removes it. So, This is a toggle
       const updatedGroup = [...groupItems];
       updatedGroup.splice(matchIndex, 1);
       setGroupItems(updatedGroup);
@@ -95,7 +95,7 @@ function GroupDemand({ demand, thickness }) {
                   </button>
                 ))}
               </div>
-              {groupingTotal && groupItems.length > 1 && !loading && (
+              {groupItems.length > 1 && !loading && (
                 <b className="flex flex-col gap-2 my-2 py-1 w-fit border-y border-black">
                   {groupingTotal}g/ {groupingWidth}mm
                 </b>
